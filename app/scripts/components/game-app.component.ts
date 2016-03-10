@@ -16,23 +16,29 @@ class GameApp {
     this.canvas.addEventListener('click', (event) => this.onCanvasClick(event));
   }
 
+  private getSelectedDot(x: number, y: number): Dot {
+    for (let row = 0; row < this.game.getBoard().model.length; row++) {
+      for (let cols = 0; cols < this.game.getBoard().model[row].length; cols++) {
+        let dot = this.game.getBoard().model[row][cols];
+        if (dot.isInDot(x, y)) {
+          console.log('clicked in:' + row + ',' + cols);
+          return dot;
+        }
+      }
+    }
+    return null;
+  }
+
   private onCanvasClick(event): void {
     this.$scope.$apply(() => {
       const x = event.pageX - this.canvas.offsetLeft,
         y = event.pageY - this.canvas.offsetTop;
-      let dot: Dot;
-
-      for (let row = 0; row < this.game.getBoard().model.length; row++) {
-        for (let cols = 0; cols < this.game.getBoard().model[row].length; cols++) {
-          dot = this.game.getBoard().model[row][cols];
-          if (dot.isInDot(x, y)) {
-            this.game.playTurn(dot);
-            this.drawDot(dot);
-            console.log('clicked in:' + row + ',' + cols);
-          }
-        }
+      let dot = this.getSelectedDot(x, y);
+      if (dot) {
+        this.game.playTurn(dot);
+        this.drawDot(dot);
       }
-      if(this.game.isGameOver()) {
+      if (this.game.isGameOver()) {
         alert('Game Over!');
       }
     });
