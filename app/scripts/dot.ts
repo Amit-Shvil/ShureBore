@@ -1,5 +1,5 @@
 'use strict';
-class Dot{
+class Dot {
 
     private row: number;
     private col: number;
@@ -8,32 +8,36 @@ class Dot{
     private YPosition: number;
     private radius: number;
 
-    constructor(row, col){
+    constructor(row, col) {
         this.row = row;
         this.col = col;
     }
 
-    public getRow(): number{
+    public getRow(): number {
         return this.row;
     }
 
-    public getCol(): number{
+    public getCol(): number {
         return this.col;
     }
 
-    public getStatus(): boolean{
-        return this.status;
+    public isEmpty(): boolean {
+        return !this.status;
     }
 
-    public setPosition(XPosition, YPosition, radius){
+    public fill() {
+        this.status = true;
+    }
+
+    public setPosition(XPosition, YPosition, radius) {
         this.XPosition = XPosition;
         this.YPosition = YPosition;
         this.radius = radius;
     }
 
-    public isInDot(XPosition, YPosition){
+    public isInDot(XPosition, YPosition) {
         return Math.pow(this.XPosition - XPosition, 2) +
-                Math.pow(this.YPosition - YPosition, 2) <= this.radius
+            Math.pow(this.YPosition - YPosition, 2) <= Math.pow(this.radius, 2);
     }
 
 }

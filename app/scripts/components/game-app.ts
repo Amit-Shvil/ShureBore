@@ -19,26 +19,20 @@ class GameApp {
     }
 
     private onCanvasClick(event): void {
-        var x = event.pageX - this.canvas.offsetLeft,
+        const x = event.pageX - this.canvas.offsetLeft,
             y = event.pageY - this.canvas.offsetTop;
-        console.log(x, y);
+        let dot: Dot;
+
         for (let row = 0; row < this.board.model.length; row++) {
             for (let cols = 0; cols < this.board.model[row].length; cols++) {
-                if(this.board.model[row][cols].isInDot(x, y)){
+                dot = this.board.model[row][cols];
+                if(dot.isInDot(x, y) && dot.isEmpty()){
+                    dot.fill();
+                    this.drawDot(dot);
                     console.log('clicked in:'+ row +','+cols);
                 }
             }
         }
-        //if (y > element.top && y < element.top + element.height && x > element.left && x < element.left + element.width) {
-        //    alert('clicked an element');
-        //}
-    //    elements.forEach(function(element) {
-    //        if (y > element.top && y < element.top + element.height && x > element.left && x < element.left + element.width) {
-    //            alert('clicked an element');
-    //        }
-    //    });
-    //
-    //}, false);
     }
 
     private drawBoard() {
@@ -52,7 +46,7 @@ class GameApp {
     private drawDot(dot: Dot) {
         this.context.beginPath();
         this.context.arc(this.boardOffset + dot.getCol() * this.dot_space, this.boardOffset + dot.getRow() * this.dot_space, this.dot_size, 0, 2 * Math.PI, false);
-        this.context.fillStyle = '#ccddff';
+        this.context.fillStyle = dot.isEmpty() ? '#ccddff' : '#000000';
         this.context.fill();
         this.context.lineWidth = 1;
         this.context.strokeStyle = '#666666';
