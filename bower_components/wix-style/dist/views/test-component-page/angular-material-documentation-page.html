@@ -1,0 +1,323 @@
+<div class='doc-page'>
+  <div>&nbsp;</div>
+  <h1>Angular Material Theme Documentation</h1>
+  <h2>Introduction</h2>
+  <p>explanation how to use it goes here</p>
+  <h2>Components</h2>
+  <h3 id='md-select'>
+    md-select directive
+    <a href='https://material.angularjs.org/latest/api/directive/mdSelect'>(angular material docs)</a>
+  </h3>
+  <md-select ng-model='main.currentOption' placeholder='Choose an option'>
+    <md-option md-no-ink='true' ng-repeat='item in main.materialSelectOptions' ng-value='item.code'>
+      {{ item.label }}
+    </md-option>
+  </md-select>
+  <div class='md-stylguide-separator'></div>
+  <h3 id='md-date-picker'>
+    md-datepicker directive
+    <a href='https://material.angularjs.org/latest/api/directive/mdDatepicker'>(angular material docs)</a>
+  </h3>
+  <md-datepicker md-click-on-input='true' ng-model='main.materialDatePicker.date' type='date'></md-datepicker>
+  <div class='md-stylguide-separator'></div>
+  <h3 id='md-autocomplete'>md-autocomplete</h3>
+  <md-autocomplete md-item-text='item' md-items='item in main.getMatches(searchText)' md-min-length='0' md-search-text='searchText' md-selected-item='main.selectedItem' placeholder='Select a US State'>
+    <span md-highlight-text='searchText'>{{item}}</span>
+  </md-autocomplete>
+  <div class='md-stylguide-separator'></div>
+  <h3 id='md-dialog'></h3>
+  $mdDialog service
+  <a href='https://material.angularjs.org/latest/api/service/$mdDialog'>(angular material docs)</a>
+  <wix-tabs class='is-tabs-textual' md-dynamic-height='true'>
+    <wix-tab label='openAlert()'>
+      <br>
+      <button class='button1 wix-button' ng-click='main.wixMaterialModalObject.openAlert()'>openAlert()</button>
+      <pre>var alertModal = wixMdDialogBuilder.alert();
+      alertModal.title('Set Up Payments');
+      alertModal.iconUrl('images/modal-v-icon.png');
+      alertModal.content('You havent set up any payment methods for your customers. Choose how you want to get paid in your Store Manager.');
+      alertModal.confirm('Exit Page');
+      alertModal.cancel('Close');
+      $mdDialog.show(alertModal).then(function () {
+        console.log('resolve');
+        $scope.message = 'resolve';
+      }).catch(function () {
+        console.log('catch');
+        $scope.message = 'catch';
+      });</pre>
+    </wix-tab>
+    <wix-tab label='openWarning()'>
+      <br>
+      <button class='button1 wix-button' ng-click='main.wixMaterialModalObject.openDangerModal()'>openDangerModal()</button>
+      <pre>var alertModal = wixMdDialogBuilder.alert();
+      alertModal.title('Set Up Payments');
+      alertModal.iconUrl('images/modal-v-icon.png');
+      alertModal.content('You havent set up any payment methods for your customers. Choose how you want to get paid in your Store Manager.');
+      alertModal.confirm('Exit Page');
+      alertModal.cancel('Close');
+      alertModal.style('DANGER');
+      $mdDialog.show(alertModal).then(function () {
+        console.log('resolve');
+        $scope.message = 'resolve';
+      }).catch(function () {
+        console.log('catch');
+        $scope.message = 'catch';
+      });</pre>
+    </wix-tab>
+    <wix-tab label='openPremium()'>
+      <br>
+      <button class='button1 wix-button' ng-click='main.wixMaterialModalObject.openPremium()'>openPremium()</button>
+      <pre>var premiumModal = wixMdDialogBuilder.premium();
+      premiumModal.title('Set Up Payments');
+      premiumModal.subtitle('I am sub');
+      premiumModal.iconUrl('images/modal-v-icon.png');
+      premiumModal.content('You havent set up any payment methods for your customers. Choose how you want to get paid in your Store Manager.');
+      premiumModal.confirm('Get My FREE Month', 'wix-button-premium');
+      premiumModal.cancel('Next Time', 'wix-button-premium is-button-outline');
+        $mdDialog.show(premiumModal).then(function () {
+        console.log('resolve');
+        $scope.message = 'resolve';
+      }).catch(function () {
+        console.log('catch');
+        $scope.message = 'catch';
+      });</pre>
+    </wix-tab>
+    <wix-tab label='openCustomAlert()'>
+      <br>
+      <button class='button1 wix-button' ng-click='main.wixMaterialModalObject.openCustomAlert()'>openCustomAlert()</button>
+      <h3>Example</h3>
+      <pre>var customContentModal = wixMdDialogBuilder.alert();
+      customContentModal
+        .title('Custom content modal')
+        .contentUrl('views/test-component-page/modal-content-example.html')
+        .confirm('OK')
+        .cancel('Cancel');
+      
+      $mdDialog.show(customContentModal).then(function () {
+        console.log('resolve');
+        $scope.message = 'resolve';
+      }).catch(function () {
+        console.log('catch');
+        $scope.message = 'catch';
+      });</pre>
+      <h3>Customizations</h3>
+      <p>you can also remove some of the fields if you don't need to use them (Check/Uncheck and click the dialog button</p>
+      <p>
+        <input ng-model='main.wixMdDialogOptions.title' type='checkbox'>Display Title</input>
+      </p>
+      <p>
+        <input ng-model='main.wixMdDialogOptions.confirm' type='checkbox'>Display Confirm Button</input>
+      </p>
+      <p>
+        <input ng-model='main.wixMdDialogOptions.cancel' type='checkbox'>Display Cancel Button</input>
+      </p>
+    </wix-tab>
+  </wix-tabs>
+  <br>
+  <br>
+  Return message
+  <div class='return-message'>{{message}}</div>
+  <div class='md-stylguide-separator'></div>
+  <div class='md-stylguide-toast'>
+    <h3 id='md-toast'>
+      $mdToast service
+      <a href='https://material.angularjs.org/latest/api/service/$mdToast'>(angular material docs)</a>
+    </h3>
+    <ul>
+      <li class='md-toast-comments'>
+        Icon should be provided in max size 32px * 32px
+      </li>
+      <li class='md-toast-comments'>
+        Not all combinations of features are allowed in design (eg. Icon and Action on the same toast). Get design details from your favourite UX person
+      </li>
+      <li class='md-toast-comments'>
+        'Warning' toast does not support all features (notice the console errors)
+      </li>
+    </ul>
+    <div class='indent-me'>
+      <div>
+        <input id='hideDelay' ng-model='main.wixToastOptions.hideDelay.active' type='checkbox'>
+        <label for='hideDelay'>hideDelay</label>
+        <wix-input class='toast-delay-input' ng-disabled='!main.wixToastOptions.hideDelay.active' ng-model='main.wixToastOptions.hideDelay.within' type='input'></wix-input>
+        <label>(0 for always opened)</label>
+      </div>
+      <div>
+        <input id='showLightColored' ng-model='main.wixToastOptions.showLightColored' type='checkbox'>
+        <label for='showLightColored'>showLightColored</label>
+      </div>
+      <div>
+        <input id='showCloseButton' ng-model='main.wixToastOptions.showCloseButton' type='checkbox'>
+        <label for='showCloseButton'>showCloseButton</label>
+      </div>
+      <div>
+        <input id='showFullWidth' ng-model='main.wixToastOptions.showFullWidth' type='checkbox'>
+        <label for='showFullWidth'>showFullWidth</label>
+      </div>
+      <div>
+        <input id='showAction' ng-model='main.wixToastOptions.showAction' type='checkbox'>
+        <label for='showAction'>showAction</label>
+      </div>
+      <div>
+        <input id='showIcon' ng-model='main.wixToastOptions.showIcon' type='checkbox'>
+        <label for='showIcon'>showIcon</label>
+      </div>
+      <div>
+        <input id='withParent' ng-model='main.wixToastOptions.withParent' type='checkbox'>
+        <label for='withParent'>withParent</label>
+      </div>
+      <div>
+        <button class='wix-button md-toast-button' ng-click='main.openToast(value)' ng-repeat='(key, value) in main.wixToastOptions.toastTypes'>open {{value}}</button>
+      </div>
+      <div class='md-toast-parent' id='mdToastParentId'>
+        This is some content inside the md-toast-parent, You can active 'withParent' checkbox to see how it looks. you can also activate the following checkboxes to see how a full width will look like:
+        'hideDelay' with '0' value, showCloseButton, showFullWidth, withParent.
+        Then click on 'open general' button to see how it works nicely. It will add padding to the container, we found out that this is the most common use-case.
+      </div>
+      <wix-tabs class='is-tabs-textual' md-dynamic-height='true'>
+        <wix-tab label='general'>
+          <pre>var obj = wixMdToastBuilder.general()
+          .content('this is a message')
+          .autoHide(1000)
+          .showLightColored()
+          .showCloseButton()
+          .showFullWidth();</pre>
+        </wix-tab>
+        <wix-tab label='showIcon'>
+          <pre>var obj = wixMdToastBuilder.general()
+          .content('this is a message')
+          .showIcon({
+            isDark: true,
+            cssClass: 'someClass',
+            url: 'images/toast/ic-default.png'
+          })</pre>
+        </wix-tab>
+        <wix-tab label='withParent'>
+          <pre>.
+          var el = angular.element($document[0].getElementById('mdToastParentId'));
+          var obj = wixMdToastBuilder.general()
+            .content('this is a message')
+            .withParent(el);</pre>
+        </wix-tab>
+        <wix-tab label='showAction - link'>
+          <pre>var obj = wixMdToastBuilder.general()
+          .content('this is a message')
+          .showAction({
+            type: wixMdToastBuilder.actionTypes.link,
+            text: 'Undo',
+            url: 'http://www.wix.com',
+            targetType: wixMdToastBuilder.targetTypes.blank
+          })</pre>
+        </wix-tab>
+        <wix-tab label='showAction - button'>
+          <pre>var obj = wixMdToastBuilder.general()
+          .content('this is a message')
+          .showAction({
+            type: wixMdToastBuilder.actionTypes.button,
+            text: 'click',
+            onClick: function () { alert('walla'); },
+          })</pre>
+        </wix-tab>
+        <wix-tab label='Predefined Configuration'>
+          You can also add the following configuration in the .config phase:
+          <pre>.config(function (wixMdToastBuilderProvider) {
+            wixMdToastBuilderProvider.setParent(parentElement);
+          })</pre>
+        </wix-tab>
+      </wix-tabs>
+    </div>
+  </div>
+  <div class='md-stylguide-separator'></div>
+  <h3 name='md-layout'>
+    md-layout directives
+    <a href='https://material.angularjs.org/latest/layout/introduction' target='_blank'>(angular material docs)</a>
+  </h3>
+  <p>
+    <span>in order to use (md) layout classes with wix-style customizations wrap eveything with</span>
+    <b>wix-layout</b>
+    <span>class</span>
+  </p>
+  <p>
+    <b>layout-padding</b>
+    <span>- attribute used to padd a container with half the size of our configured grid-gutter-width(36px)</span>
+    <div>*checkout examples for better understanding of how to use this attribute</div>
+  </p>
+  <p>
+    <b>grid-gutter-width</b>
+    <span>- is the width of space we keep between our blocks, we use 36px for our gutter width.</span>
+  </p>
+  <wix-tabs class='is-tabs-textual' md-dynamic-height='true'>
+    <wix-tab label='{{main.layoutExamples[0].title}}'>
+      <div class='wix-layout' style='width:1044px; background:lavender'>
+        <div layout-padding layout='row' ng-repeat='row in main.layoutExamples[0].layout'>
+          <div flex='{{block}}' layout-padding ng-repeat='block in row track by $index' style='background:lavender'>
+            <div class='wix-block-example'>
+              content block, size-{{block}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </wix-tab>
+    <wix-tab label='{{main.layoutExamples[1].title}}'>
+      <div class='wix-layout' style='width:1044px; background:lavender'>
+        <div layout-padding layout='row' ng-repeat='row in main.layoutExamples[1].layout'>
+          <div flex='{{block}}' layout-padding ng-repeat='block in row track by $index' style='background:lavender'>
+            <div class='wix-block-example'>
+              content block, size-{{block}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </wix-tab>
+    <wix-tab label='{{main.layoutExamples[2].title}}'>
+      <div class='wix-layout' layout-padding style='width:1044px; background:lavender; box-sizing: border-box'>
+        <div layout='row' ng-repeat='row in main.layoutExamples[2].layout'>
+          <div flex='{{block}}' layout-padding ng-repeat='block in row track by $index' style='background:lavender'>
+            <div class='wix-block-example'>
+              content block, size-{{block}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </wix-tab>
+    <wix-tab label='page layout'>
+      <div class='wix-layout' layout-padding style='width:1044px; background:lavender; box-sizing: border-box'>
+        <div layout='row'>
+          <div flex='80' style='background:lavender'>
+            <div layout='row'>
+              <div flex='60' layout-padding style='background:lavender'>
+                <div class='wix-block-example'>
+                  content block, size-60
+                </div>
+              </div>
+              <div flex='60' layout-padding style='background:lavender'>
+                <div class='wix-block-example'>
+                  content block, size-60
+                </div>
+              </div>
+            </div>
+            <div layout-padding layout='row'>
+              <div flex style='background:lavender'>
+                <div class='wix-block-example'>
+                  content block, full-size
+                </div>
+              </div>
+            </div>
+          </div>
+          <div flex='40' layout-padding style='background:lavender'>
+            <div class='wix-block-example' style='height:326px'>
+              content block, size-40
+            </div>
+          </div>
+        </div>
+        <div layout='row'>
+          <div flex layout-padding style='background:lavender'>
+            <div class='wix-block-example'>
+              content block, size-120
+            </div>
+          </div>
+        </div>
+      </div>
+    </wix-tab>
+  </wix-tabs>
+  <div class='md-stylguide-bottom-margin'></div>
+</div>

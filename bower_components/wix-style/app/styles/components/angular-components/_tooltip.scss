@@ -1,0 +1,288 @@
+// Tooltip
+//
+// Styleguide 3.5
+
+// Tooltips
+//
+// Use Tootlips by adding attribute 'wix-tooltip' with the text/html content you want to appear.
+// </br>
+// WixTooltip supports:
+// <ul>
+// <li>text or html content</li>
+// <li>append to element or body: append-to-body=[true/false]</li>
+// <li>placement: placement=[top/right/bottom/left]</li>
+// <li>max width (text): max-width=['200px'/'40%']</li>
+// <li>The tooltip will not close itself once you enter the tooltip</li>
+// <li>tooltip-enable (expression/bool): tooltip-enable="{{1===2}}"</li>
+// <li>debug: debug will prevent the tooltip from closing)</li>
+// </ul>
+// </br>
+// By default the tooltip is adding itself after the element but if the element is inside an element with overflow: hidden and non-static positioning, you won't see it.
+// Add attribute 'append-to-body=true' in order to solve this issue (see example)
+// </br>
+// <span style="font-size: 18px">todo</span> - when tooltip is outside the screen, align it to the right/left instead of center. arrow should remain in the middle of base component 
+// 
+// markup:
+//<div parameter-provider="htmlContent" html="true">
+//  <div>here is some html
+//    </br>
+//   <a href='http://wix.com' target='_blank'>Click Me</a>
+//  </div>
+//</div>
+// <div class="tooltip-holder" href="#" wix-tooltip="Tooltip Content" placement="top">From Top</div>
+// <div class="tooltip-holder" href="#" wix-tooltip="Tooltip Content" placement="bottom">From Bottom</div>
+// <div class="tooltip-holder" href="#" wix-tooltip="Tooltip Content" placement="left">From Left</div>
+// <div class="tooltip-holder" href="#" wix-tooltip="Tooltip Content" placement="right">From Right</div>
+// <div class="tooltip-holder" href="#" wix-tooltip="{{htmlContent}}" >Tooltip With Html</div>
+// <div class="tooltip-overflow-container">
+//   <div class="tooltip-holder" href="#" wix-tooltip="append to body when you're in relative and overflow wrapper">You can't see all of me due to overflow: hidden</div>
+// </div>
+// <div class="tooltip-overflow-container">
+// <div class="tooltip-holder" href="#" wix-tooltip="append to body when you're in relative and overflow wrapper" append-to-body=true>append-to-body</div>
+// </div>
+// <div class="tooltip-overflow-container">
+// <div class="tooltip-holder" href="#" wix-tooltip="<span style='color: #2b81cb'>although this is only a tooltip </span>you can enter a very long text a very long text a very long text a very long text a very long text a very long
+// </div>
+// text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very 
+// long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very 
+// long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very 
+// long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very 
+// long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very long text a very 
+// <span style='color: #2b81cb'>and set max_width</span>" append-to-body=true max-width='40%'>a very long text</div>
+//
+// sg-wrapper:
+// <div class="styleguide-tooltip-wrapper">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.5.1
+
+// Tooltip Enable
+//
+// tooltip-enable: Is it enabled? It will enable or disable the configured
+//
+// markup:
+// <input type="checkbox" ng-init="main.wixTooltipEnabled = true" id="wix-tooltip-enable-checkbox" ng-model="main.wixTooltipEnabled"></input>
+// <span ng-show="main.wixTooltipEnabled">Tooltip is enabled</span>
+// <span ng-hide="main.wixTooltipEnabled">Tooltip is disabled</span>
+// <br/>
+// <a class="tooltip-holder" wix-tooltip="This is the tooltip content" tooltip-enable="{{main.wixTooltipEnabled}}" placement="right">hover me</a>
+// <br/>
+// <br/>
+// <br/>
+//
+// Styleguide 3.5.2
+
+// Tooltip Debug
+//
+// Adding <code>debug</code> attribute will force the tooltip to stay visible even after mouse out. This feature is extremely helpful for developers when things get rough. Don't forget to delete it once you're done!
+//
+// markup:
+// <br/>
+// <a wix-tooltip="I will not hide anymore because I have debug attribute" debug placement="right">hover me</a>
+// <br/>
+// <br/>
+//
+// Styleguide 3.5.3
+
+// Tooltip Trigger
+//
+// You can change the selector<sup>1</sup> trigger event which creates the tooltip (<code>tooltip-trigger="[open-tooltip-event] [show-tooltip-event]"</code>)
+// <ul>
+// <li>`hover hover` : (default) hover to open, hover-out to close</li>
+// <li>`click hover` : click to open, hover-out to close</li>
+// <li>`click click-selector` : click to open, click selector to close (only a selector click will close the tooltip)</li>
+// </ul>
+// <br/>
+// (1) the DOM element on which the <code>wix-tooltip</code> is set.
+//
+// markup:
+// <ul>
+// <li><a wix-tooltip="I was triggered by hover" append-to-body="true">hover me</a></li>
+// <li><a wix-tooltip="I was triggered by click-hover" tooltip-trigger="click hover" href="" append-to-body="true">click me</a> (and hover out to close)</li>
+// <li><a wix-tooltip="I was triggered by click" tooltip-trigger="click click-selector" href="" append-to-body="true">click me</a>  (and click tooltip selector again to close - <b>pay attention that the closing click is only on the selector and not on the tooltip</b>)</li>
+// </ul>
+//
+// Styleguide 3.5.4
+
+// Tooltip is-open (programmatically trigger)
+//
+// Pass a boolean variable reference to <code>is-open</code> to view or set tooltip mode:
+// <code>true</code> to open tooltip / <code>false</code> to close it.
+// <br/>
+// <b>IMPORTANT NOTE:</b> is-open value must be an explicit boolean (no truthy/falsely values)
+//
+// markup:
+// <div hidden parameter-provider="tooltipOpen">tooltipOpen</div>
+// <a href="" wix-tooltip="see that I'm opened" is-open="tooltipOpen" placement="top" tooltip-trigger="click click-selector" append-to-body="true">click me</a>
+// and <input type="checkbox" ng-model="tooltipOpen"> check to open/close opened tooltip
+// <br>
+// <p>tooltip is <b style="color: red">{{tooltipOpen ? 'opened' : 'closed'}}</b></p>
+//
+// Styleguide 3.5.5
+
+// Custom Tooltip
+//
+// <p>
+// You can use your own template as the content of the tooltip element, with its own isolated scope.
+// Html template is passed as string to <code>tooltip-template</code>, and scope is passed as object reference to <code>tooltip-scope</code>.
+// </p>
+// <p>
+// Notes:
+// <ul>
+// <li>Your template will be automatically wrapped with wix-tooltip elements and style (see source).</li>
+// <li>Each key of the scope object is referred to directly in html template (no namespace or $scope needed).</li>
+// <li>Template url is not supported.</li>
+// </ul>
+// </p>
+//
+// markup:
+// <!-- setup -->
+// <div parameter-provider="scopeObject">{"num":72}</div>
+// <div parameter-provider="htmlContent" html="true">
+// <span style="border: 3px dotted purple; padding: 10px;">The best number is {{num + 1}}</span>
+// </div>
+// <!-- actual markup -->
+// <a wix-tooltip tooltip-scope="scopeObject" tooltip-template="{{htmlContent}}" append-to-body="true">hover me</a>
+//
+// Styleguide 3.5.6
+
+// Tooltip tooltip-close-on-content
+//
+// <p>
+// When you pass <code>tooltip-close-on-content="true"</code> it will hide the tooltip when you hover on the tooltip itself
+// </p>
+//
+// markup:
+// <a  wix-tooltip="You can not hover me" tooltip-close-on-content="true" placement="top" append-to-body="true">hover me</a>
+// <br>
+//
+// Styleguide 3.5.7
+
+@mixin _wix-style-tooltip() {
+  .wix-tooltip {
+    $wix-tooltip-background-color: rgba(255, 255, 255, .95);
+    $wix-tooltip-arrow-size: 14px;
+    $wix-tooltip-arrow-padding: 0;
+    position: absolute;
+    z-index: $_wix-style-z-index-tooltip;
+
+    &::before {
+      z-index: 11;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      width: $wix-tooltip-arrow-size;
+      height: $wix-tooltip-arrow-size;
+      background-color: $wix-tooltip-background-color;
+      position: absolute;
+    }
+
+    &::after {
+      z-index: 9;
+    }
+
+    &.placement-top,
+    &.placement-bottom {
+
+      &::before,
+      &::after {
+        right: 50%;
+        transform: translateX($wix-tooltip-arrow-size/2) rotate(45deg);
+      }
+    }
+
+    &.placement-top {
+      padding-bottom: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding;
+
+      &::before {
+        bottom: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+      }
+
+      &::after {
+        bottom: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, .1);
+      }
+    }
+
+    &.placement-bottom {
+      padding-top: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding;
+
+      &::before {
+        top: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+      }
+
+      &::after {
+        top: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+        box-shadow: -3px -3px 6px rgba(0, 0, 0, .1);
+      }
+    }
+
+    &.placement-left,
+    &.placement-right {
+
+      &::before,
+      &::after {
+        top: 50%;
+        transform: translateY(-$wix-tooltip-arrow-size/2) rotate(45deg);
+      }
+
+      &::before {
+        margin-top: 1px;
+      }
+    }
+
+    &.placement-left {
+      padding-right: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding;
+
+      &::before {
+        right: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+      }
+
+      &::after {
+        right: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+        box-shadow: 3px -3px 6px rgba(0, 0, 0, .1);
+      }
+    }
+
+    &.placement-right {
+      padding-left: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding;
+
+      &::before {
+        left: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+      }
+
+      &::after {
+        left: $wix-tooltip-arrow-size + $wix-tooltip-arrow-padding - 6px;
+        box-shadow: -3px 3px 6px rgba(0, 0, 0, .1);
+      }
+    }
+
+    .wix-tooltip-container {
+      background-color: $wix-tooltip-background-color;
+      box-shadow: 0 0 11px 0 rgba(0, 0, 0, .21);
+      position: relative;
+      z-index: 10;
+      padding: 18px;
+      line-height: 20px;
+      font-size: $wix-font-size-text-small;
+      font-family: $wix-font-family-helvetica-55;
+      color: $wix-color-dark30;
+      border-radius: 8px;
+      word-wrap: break-word;
+
+      .wix-tooltip-arrow {
+        position: relative;
+        bottom: 0;
+      }
+    }
+  }
+
+  .wix-modal + .wix-tooltip {
+    z-index: $_wix-style-z-index-modal+1;
+  }
+}
+
+@include _wix-style-tooltip();

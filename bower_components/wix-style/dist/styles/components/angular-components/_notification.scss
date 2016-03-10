@@ -1,0 +1,271 @@
+// Notifcations
+//
+// <div class="under-constructions"></div>
+// You can choose between simple notifications (html/css) and the ones with "close" button (with js handler).
+// All directives are transcluded, so you can add whatever html you want inside them, but it's up to you if it looks bad :)
+//
+// Styleguide 3.2
+
+// Simple notifications
+//
+// Notifications that have box shadow and rounded corners. The default auto-hide timeout is 5 seconds
+//
+// general - General notification
+// warning - Warning notification
+// error - Error notification
+// success - Success notification
+//
+// markup:
+// <wix-notification template="with-shadow" type="{$modifiers}">{$modifiers}</wix-notification>
+//
+// sg-wrapper:
+// <div class="styleguide-notification">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.2.1
+//
+
+// Simple notifications with custom auto hiding timeout (set to 10 seconds)
+//
+// Note that if the text does not fit in one line, it will be cut off (with ellipsis).
+// If you provide html (with `<p>` or `<br>`) it's up to you to make sure everything works.
+//
+// general - General notification
+// warning - Warning notification
+// error - Error notification
+// success - Success notification
+//
+// markup:
+// <wix-notification template="with-shadow" type="{$modifiers}" auto-hide="10000">{$modifiers}
+// The very very long text that just can not fit in one normal line in the browser window.
+// The very very long text that just can not fit in one normal line in the browser window.
+// The very very long text that just can not fit in one normal line in the browser window.
+// </wix-notification>
+//
+// sg-wrapper:
+// <div class="styleguide-notification">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.2.2
+//
+
+// Notifications with "close" button
+//
+// All notifications with close button have optional "on-close" callback.
+//
+// general - General notification
+// error - Error notification
+// success - Success notification
+//
+// markup:
+// <wix-notification template="with-close-button" type="{$modifiers}" on-close="myOnClose()">{$modifiers} <a href="#">link</a></wix-notification>
+//
+// Styleguide 3.2.3
+//
+
+// Notifications with "close" button and inner buttons
+//
+// Notifications have links looking like buttons.
+// All notifications with close button have optional "on-close" callback
+//
+// general - General notification
+// error - Error notification
+// success - Success notification
+//
+// markup:
+// <wix-notification template="with-inner-button" type="{$modifiers}" on-close="myOnClose()">{$modifiers}<a href="#">button</a></wix-notification>
+//
+// Styleguide 3.2.4
+//
+
+// Notifications with "close" button and icon
+//
+// All notifications with close button have optional "on-close" callback
+//
+// general - General notification
+// error - Error notification
+// success - Success notification
+//
+// markup:
+// <wix-notification template="with-icon" type="{$modifiers}" on-close="myOnClose()">{$modifiers}</wix-notification>
+//
+// Styleguide 3.2.5
+//
+
+// Notifications with "close" button and icon with background
+//
+// All notifications with close button have optional "on-close" callback
+//
+// general - General notification
+// error - Error notification
+// success - Success notification
+//
+// markup:
+// <wix-notification template="with-icon-dark" type="{$modifiers}" on-close="myOnClose()">{$modifiers}</wix-notification>
+//
+// Styleguide 3.2.6
+//
+
+%wix-notification {
+  $text-color: #ffffff;
+  margin: 0 auto;
+  padding: 12px 24px;
+  color: $text-color;
+  box-sizing: border-box;
+  font-family: $wix-font-family-helvetica-45;
+  font-size: $wix-font-size-text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: $wix-font-size-text;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+%wix-notification-has-shadow {
+  display: inline-block;
+  min-width: 396px;
+  margin-top: 24px;
+  padding: 11px 24px 9px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .15);
+  border-radius: 6px;
+}
+
+@mixin _notification-close-button($base-color, $hover-color, $border-color: transparent) {
+  $text-color: #ffffff;
+  position: relative;
+  padding: 12px 41px 12px 12px;
+
+  .wix-notification-close-button {
+    @extend .wix-style-svg-font-icons-close;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    right: 12px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #{$border-color};
+    border-radius: 9px;
+    background: $base-color;
+    line-height: 17px;
+    font-family: 'wix-style-svg-font-icons';
+    font-size: 7px;
+    color: $text-color;
+    cursor: pointer;
+
+    &:before {
+      display: block;
+      padding: 0;
+      text-align: center;
+    }
+
+    &:hover {
+      background: $hover-color;
+    }
+  }
+}
+
+@mixin _notification-inner-button($base-color, $hover-color) {
+  a {
+    display: inline-block;
+    background: $base-color;
+    margin: 0 11px;
+    padding: 7px 20px;
+    border-radius: 18px;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 16px;
+
+    &:hover {
+      background: $hover-color;
+    }
+  }
+}
+
+@mixin _notification-icon($icon, $background-color: inherit) {
+  .wix-notification-icon {
+    @extend .wix-style-svg-font-icons-#{$icon};
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: $background-color;
+    line-height: 30px;
+    vertical-align: middle;
+    font-family: 'wix-style-svg-font-icons';
+
+    @if $icon == 'plaster' {
+      font-size: 20px;
+      width: 40px;
+    }
+    @if $icon == 'check' {
+      font-size: 14px;
+      width: 40px;
+    }
+    @if $background-color != 'inherit' {
+      margin: 0 12px 0 0;
+      border-radius: 15px;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+    }
+
+    &:before {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+@mixin _wix-notification($notification-type, $base-color, $close-button-color-dark, $close-button-color-light, $notification-icon) {
+  .wix-notification-#{$notification-type} {
+    $link-color: #ffffff;
+    @extend %wix-notification;
+    background: $base-color;
+
+    &.is-notification-with-shadow {
+      @extend %wix-notification-has-shadow;
+    }
+
+    &.is-notification-closable {
+      @include _notification-close-button($close-button-color-light, $close-button-color-dark);
+    }
+
+    &.is-notification-closable-with-inner-button {
+      @include _notification-close-button($close-button-color-light, $close-button-color-dark);
+      @include _notification-inner-button($close-button-color-dark, $close-button-color-light);
+    }
+
+    @if $notification-icon {
+      &.is-notification-closable-with-icon {
+        @include _notification-close-button($close-button-color-light, $close-button-color-dark);
+        @include _notification-icon($notification-icon);
+      }
+
+      &.is-notification-closable-with-icon-dark {
+        @include _notification-close-button($close-button-color-light, $close-button-color-dark);
+        @include _notification-icon($notification-icon, $close-button-color-light);
+        padding-top: 11px;
+        padding-bottom: 11px;
+      }
+    }
+
+    a {
+      color: $link-color;
+    }
+  }
+}
+
+.wix-notification-container {
+  width: 100%;
+  text-align: center;
+}
+
+@include _wix-notification('general', $wix-color-blue20, $wix-color-blue05, $wix-color-blue10, 'bulb');
+@include _wix-notification('error', $wix-color-red20, $wix-color-red05, $wix-color-red10, 'plaster');
+@include _wix-notification('success', $wix-color-green20, $wix-color-green05, $wix-color-green10, 'check');
+@include _wix-notification('warning', $wix-color-yellow20, $wix-color-yellow05, $wix-color-yellow10, null);

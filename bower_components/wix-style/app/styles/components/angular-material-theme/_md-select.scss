@@ -1,0 +1,110 @@
+// MD Select
+//
+// <a class="link-for-doc" href="../#/test-component-page/angular-material-documentation#md-select"><a>
+//
+// Styleguide 4.1
+//
+
+md-select {
+  border: 1px solid $wix-color-blue30;
+  border-radius: 6px;
+  font-size: $wix-font-size-text;
+  padding: 0 3px 5px 10px;
+  line-height: 24px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  color: $wix-color-dark10;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 243px;
+
+  &:hover {
+    background: $wix-color-blue50;
+  }
+
+  &:focus:not(:disabled) .md-select-value {
+    border: 0;
+  }
+
+  .md-select-value {
+    border: 0;
+
+    .md-select-icon {
+      //scss-lint:disable PlaceholderInExtend
+      @extend .wix-style-svg-font-icons;
+      @extend .wix-style-svg-font-icons-arrow-down;
+      //scss-lint:enable PlaceholderInExtend
+      color: $wix-color-blue10;
+      font-size: 7px;
+      position: relative;
+      top: 2px;
+      right: 4px;
+
+      // kill original angular material font arrow icon
+      &:after {
+        content: '';
+      }
+    }
+  }
+}
+
+// scss-lint: disable all
+.md-select-menu-container.md-active md-select-menu {
+  transition: none;
+
+  * {
+    transition: none;
+  }
+
+}
+// scss-lint:enable all
+
+md-select-menu {
+  border-top: none medium;
+  border-radius: 8px;
+  padding: 0;
+  z-index: 1;
+  // scss-lint:disable ImportantRule
+  transform: none !important;  // sass-lint: ignore
+  transition: none !important;  // sass-lint: ignore
+  // scss-lint:enable ImportantRule
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, .14);
+  font-weight: 300;
+  font-family: $wix-font-family-helvetica-45;
+  
+  md-content {
+    border-radius: 8px;
+  }
+
+  &:not(.md-overflow) md-content {
+    padding: 0;
+  }
+
+  md-option:not([selected]) {
+    &:hover {
+      background: $wix-color-blue50;
+      cursor: pointer;
+    }
+
+    &:focus {
+      background: $wix-color-blue50;
+    }
+  }
+
+  md-option {
+    height: 36px;
+  }
+
+  //scss-lint:disable QualifyingElement
+  md-option[selected] {
+    background: $wix-color-blue10;
+    color: $wix-color-white;
+
+    &:focus {
+      color: $wix-color-white;
+    }
+  }
+  //scss-lint:enable QualifyingElement
+}

@@ -1,0 +1,7 @@
+<ul class="wizard-steps">
+    <li class="step" ng-repeat="step in steps">
+        <div class="step-status" ng-class="{'active': step.state==='active'}"><span>1</span></div>
+        <a class="step-name">{{step.name}}</a>
+        </li>
+    </ul>
+<button class="next-button wix-button is-button-large">Next</button>

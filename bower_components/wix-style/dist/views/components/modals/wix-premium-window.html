@@ -1,0 +1,17 @@
+<div class='wix-modal'>
+  <div class='wix-modal--premium-window'>
+    <div class='wix-modal--premium-header'>
+      <button class='wix-modal--premium-close-button wix-style-svg-font-icons-close' md-autofocus ng-click='windowCtrl.close($event)'></button>
+      <div class='wix-modal--premium-title'>{{title}}</div>
+      <div class='wix-modal--premium-sub-title'>{{subtitle}}</div>
+    </div>
+    <div class='wix-modal--premium-modal-body'>
+      <img class='wix-modal--premium-icon' ng-show='iconUrl' ng-src='{{iconUrl}}'>
+      <div class='wix-modal--premium-content'>{{htmlContent}}</div>
+      <div class='wix-modal--premium-buttons'>
+        <button class='wix-modal--premium-confirm-button' ng-class='confirmButton.buttonClass' ng-click='windowCtrl.confirm($event)' ng-show='confirmButton'>{{confirmButton.label}}</button>
+        <button class='wix-modal--premium-cancel-button' ng-class='cancelButton.buttonClass' ng-click='windowCtrl.cancel($event)' ng-show='cancelButton'>{{cancelButton.label}}</button>
+      </div>
+    </div>
+  </div>
+</div>

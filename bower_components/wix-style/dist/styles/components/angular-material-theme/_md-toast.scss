@@ -1,0 +1,289 @@
+// scss-lint:disable QualifyingElement
+md-toast.md-top.wix-md-notification-container {
+  top: 0;
+}
+
+md-toast .md-toast-content {
+  background-color: transparent;
+  margin: 11px auto;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.wix-md-notification-container {
+  $wix-md-notification-content-font-size: 14px;
+  $wix-md-notification-full-content-font-size: 16px;
+  $wix-md-notification-content-color: $wix-color-white;
+  $wix-md-notification-main-margin: 12px;
+  $wix-md-notification-close-size: 18px;
+  //md overrides
+  display: flex;
+  align-items: baseline;
+  left: 0;
+  right: 0;
+  padding: 0;
+  justify-content: center;
+  max-width: 100%;
+  border-radius: 0;
+  height: auto;
+  transition: all .25s cubic-bezier(.25, .8, .25, 1) .2s;
+  box-shadow: none;
+  background-color: transparent;
+  top: 0;
+  position: fixed;
+
+  .wix-md-notification-wrapper {
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    min-width: 224px;
+    max-width: 972px;
+    min-height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $wix-md-notification-main-margin;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
+  }
+
+  &.wix-md-notification-light .wix-md-notification-wrapper {
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .13);
+  }
+
+  .wix-md-notification-action {
+    outline: none;
+  }
+
+  .wix-md-notification-icon-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: $wix-md-notification-main-margin;
+    overflow: hidden;
+
+    &-dark {
+      height: 32px;
+      width: 32px;
+      min-width: 32px;
+    }
+  }
+
+  .wix-md-notification-content {
+    font-size: $wix-md-notification-content-font-size;
+    font-family: $wix-font-family-helvetica-55;
+    color: $wix-md-notification-content-color;
+    line-height: 20px;
+  }
+
+  .wix-md-notification-button {
+    flex-shrink: 0;
+    font-size: $wix-md-notification-content-font-size;
+    font-family: $wix-font-family-helvetica-45;
+    color: $wix-md-notification-content-color;
+    outline: none;
+    padding-bottom: 6px;
+    margin-left: $wix-md-notification-main-margin;
+    transition: color .3s ease,
+    border-color .3s ease,
+    background-color .3s ease;
+  }
+
+  .wix-md-notification-action-link {
+    font-size: $wix-md-notification-content-font-size;
+    font-family: $wix-font-family-helvetica-55;
+    color: $wix-md-notification-content-color;
+    background-color: transparent;
+    border: 0;
+    text-decoration: underline;
+  }
+
+  .wix-md-notification-close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: $wix-md-notification-main-margin;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    text-align: center;
+    width: $wix-md-notification-close-size;
+    height: $wix-md-notification-close-size;
+
+    svg {
+      fill: $wix-md-notification-content-color;
+      width: 8px;
+      font-size: 14px;
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  &.wix-md-notification-under-parent {
+    position: absolute;
+  }
+
+  &.wix-md-notification-with-close .wix-md-notification-wrapper {
+    padding-right: $wix-md-notification-main-margin * 2 + $wix-md-notification-close-size;
+  }
+
+  &.wix-md-notification-full-width {
+
+    .md-toast-content {
+      margin: 0;
+      padding: 4px 0 0;
+      width: 100%;
+    }
+
+    .wix-md-notification-wrapper {
+      margin-top: 0;
+      border-radius: 0;
+      width: 100%;
+      max-width: 100%;
+      box-shadow: none;
+
+      .wix-md-notification-content {
+        line-height: 24px;
+        font-size: $wix-md-notification-full-content-font-size;
+      }
+
+      .wix-md-notification-action-link {
+        font-size: $wix-md-notification-full-content-font-size;
+        padding-left: 7px;
+      }
+    }
+  }
+
+  &.wix-md-notification-general {
+    .wix-md-notification-wrapper {
+      background-color: $wix-color-blue20;
+    }
+
+    &.wix-md-notification-light .wix-md-notification-wrapper {
+      background-color: $wix-color-blue30;
+
+      .wix-md-notification-content {
+        color: $wix-color-blue03;
+      }
+    }
+
+    .wix-md-notification-icon-wrapper-dark {
+      background-color: rgba($wix-color-blue05, .5);
+    }
+
+    .wix-md-notification-button {
+      background-color: $wix-color-blue05;
+
+      &:hover {
+        background-color: $wix-color-blue10;
+      }
+
+      &:active {
+        background-color: $wix-color-blue05;
+      }
+    }
+  }
+
+  &.wix-md-notification-error {
+
+    .wix-md-notification-wrapper {
+      background-color: $wix-color-red20;
+    }
+
+    &.wix-md-notification-light .wix-md-notification-wrapper {
+      background-color: $wix-color-red30;
+
+      .wix-md-notification-content {
+        color: $wix-color-red03;
+      }
+
+    }
+
+    .wix-md-notification-icon-wrapper-dark {
+      background-color: rgba($wix-color-red05, .5);
+    }
+
+    .wix-md-notification-button {
+      background-color: $wix-color-red05;
+
+      &:hover {
+        background-color: $wix-color-red10;
+      }
+
+      &:active {
+        background-color: $wix-color-red05;
+      }
+    }
+  }
+
+  &.wix-md-notification-success {
+
+    .wix-md-notification-wrapper {
+      background-color: $wix-color-green20;
+    }
+
+    &.wix-md-notification-light .wix-md-notification-wrapper {
+      background-color: $wix-color-green30;
+
+      .wix-md-notification-content {
+        color: $wix-color-green03;
+      }
+
+    }
+
+    .wix-md-notification-icon-wrapper-dark {
+      background-color: rgba($wix-color-green05, .5);
+    }
+
+    .wix-md-notification-button {
+      background-color: $wix-color-green05;
+
+      &:hover {
+        background-color: $wix-color-green10;
+      }
+
+      &:active {
+        background-color: $wix-color-green05;
+      }
+    }
+  }
+
+  &.wix-md-notification-warning {
+
+    .wix-md-notification-wrapper {
+      background-color: $wix-color-yellow20;
+    }
+
+    &.wix-md-notification-light .wix-md-notification-wrapper {
+      background-color: $wix-color-yellow30;
+
+      .wix-md-notification-content {
+        color: $wix-color-yellow03;
+      }
+
+    }
+  }
+}
+
+.wix-style-md-material-toast-full-width-placeholder {
+  height: 0;
+  display: block;
+  transition: height .3s cubic-bezier(.55, 0, .55, .2); // This is the OUT animation
+  &.wix-style-md-material-toast-full-width-placeholder-open {
+    transition: height .25s cubic-bezier(.25, .8, .25, 1) .2s; // This is the IN animation
+    height: 48px;
+  }
+;
+}
+
+// MD Toast
+//
+// <a class="link-for-doc" href="../#/test-component-page/angular-material-documentation#md-toast"><a>
+//
+// Styleguide 4.5
+//
+
+

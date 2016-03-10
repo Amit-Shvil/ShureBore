@@ -1,0 +1,264 @@
+// Nav
+//
+// This is the nav section
+//
+// is-skin-blue - Red Skin
+// is-skin-green - Green Skin
+// is-skin-red - Red Skin
+// is-skin-yellow - Red Skin
+// is-skin-turquoise  - Turquoise Skin
+// custom color - using mixin wix-style-nav-custom($skin-color-custom)
+//
+// markup:
+// <span style="border: 1px solid black; height: 942px; display:inline-block">
+// <nav class='wix-nav {$modifiers}'>
+// <header>
+//  <span style='width: 75px; height: 75px; border-radius: 999px; background-color: #dfe5eb'><span>
+// </header>
+// <button class='wix-button'> New Shoutout </button>
+// <ul>
+//   <li> Resevations </li>
+//   <li class="selected"> Rooms </li>
+//   <li> Pricing </li>
+//   <li> Settings </li>
+// </ul>
+// <span class='wix-list-header'> ALBUMS </span>
+// <ul class='wix-nav-secondary-list'>
+//   <li> Rooms </li>
+//   <li> Pricing </li>
+//   <li> Settings </li>
+// </ul>
+// <footer>
+// <button class='wix-nav-footer-item'> Preview </button>
+// <button class='wix-nav-footer-item is-width-fixed' style="width: 43px"> <i class='wix-style-svg-font-icons-help'> </i> </button>
+// <button class='wix-nav-footer-item is-width-fixed' style="width: 43px"> <i class='wix-style-svg-font-icons-chat'> </i> </button>
+// </footer>
+// </nav>
+// </span>
+//
+// Styleguide 2.3
+//
+
+// Nav - Footer Items
+//
+// markup:
+// <span style="border: 1px solid black; height: 342px; display:inline-block">
+// <nav class='wix-nav'>
+// <header>
+//  <span style='width: 75px; height: 75px; border-radius: 999px; background-color: #dfe5eb'><span>
+// </header>
+// <footer>
+// <button class='wix-nav-footer-item'> Preview </button>
+// <button class='wix-nav-footer-item is-width-fixed' style="width: 43px"> <i class='wix-style-svg-font-icons-help'> </i> </button>
+// <button class='wix-nav-footer-item is-width-fixed' style="width: 43px"> <i class='wix-style-svg-font-icons-chat'> </i> </button>
+// </footer>
+// </nav>
+// </span>
+// <span style="border: 1px solid black; height: 342px; display:inline-block">
+// <nav class='wix-nav'>
+// <header>
+//  <span style='width: 75px; height: 75px; border-radius: 999px; background-color: #dfe5eb'><span>
+// </header>
+// <footer>
+// <button class='wix-nav-footer-item'> <i class='wix-style-svg-font-icons-help'> </i> </button>
+// <button class='wix-nav-footer-item'> <i class='wix-style-svg-font-icons-chat'> </i> </button>
+// </footer>
+// </nav>
+// </span>
+// <span style="border: 1px solid black; height: 342px; display:inline-block">
+// <nav class='wix-nav'>
+// <header>
+//  <span style='width: 75px; height: 75px; border-radius: 999px; background-color: #dfe5eb'><span>
+// </header>
+// <footer>
+// <button class='wix-nav-footer-item'> <i class='wix-style-svg-font-icons-help'> </i> </button>
+// <button class='wix-nav-footer-item'> <i class='wix-style-svg-font-icons-help'> </i> </button>
+// <button class='wix-nav-footer-item'> <i class='wix-style-svg-font-icons-chat'> </i> </button>
+// </footer>
+// </nav>
+// </span>
+// <span style="border: 1px solid black; height: 342px; display:inline-block">
+// <nav class='wix-nav'>
+// <header>
+//  <span style='width: 75px; height: 75px; border-radius: 999px; background-color: #dfe5eb'><span>
+// </header>
+// <footer>
+// <button class='wix-nav-footer-item'> <i class='wix-style-svg-font-icons-help'></i> Help </button>
+// </footer>
+// </nav>
+// </span>
+//
+// Styleguide 2.3.1
+//
+
+$skins-map: (
+    "red": #e05050,
+    "blue": $wix-color-blue10,
+    "green": #42c5bf,
+    "yellow": #f6c360,
+    "turquoise": #41aac1
+  );
+
+$skin-color-custom: #0431b4;
+
+@mixin wix-style-nav-skin($skin) {
+
+  $skin-color: map-get($skins-map, $skin);
+
+  .wix-nav.is-skin-#{$skin} {
+
+    li {
+      &:hover {
+        background-color: rgba($skin-color, .2);
+      }
+
+      &.selected {
+        background: $skin-color;
+      }
+    }
+  }
+}
+
+@mixin wix-style-nav-custom($color) {
+  .wix-nav > ul li {
+    &:hover {
+      background-color: rgba($color, .2);
+    }
+
+    &.selected {
+      background: $color;
+    }
+  }
+}
+
+@mixin wix-style-nav {
+
+  $nav-width: 192px;
+  $nav-padding-left: 25px;
+  $header-height: 204px;
+
+  $list-item-height: 60px;
+  $list-item-text-color: $wix-color-dark10;
+  $list-item-text-font-family: $wix-font-family-helvetica-45;
+  $list-item-text-font-size: 16px;
+  $list-item-color-selected: $wix-color-dark30;
+  $list-item-color-hover: $wix-color-dark70;
+  $list-item-text-color-selected: #ffffff;
+
+  $secondary-list-item-height: 48px;
+
+  $list-header-height: 54px;
+  $list-header-font-size: 12px;
+  $list-header-font-family: $wix-font-family-helvetica-55;
+
+  $footer-height: 42px;
+  $footer-item-backgound-color: #f0f3f5;
+
+  %wix-nav-list {
+
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+
+    li {
+      line-height: $list-item-height;
+      padding-left: $nav-padding-left;
+      color: $list-item-text-color;
+      font-family: $list-item-text-font-family;
+      font-size: $list-item-text-font-size;
+
+      &:hover {
+        background-color: $list-item-color-hover;
+      }
+
+      &.selected {
+        color: $list-item-text-color-selected;
+        background-color: $list-item-color-selected;
+      }
+    }
+  }
+
+  .wix-nav {
+    position: relative;
+    width: $nav-width;
+    height: 100%;
+    padding-bottom: $footer-height;
+    box-sizing: border-box;
+    text-align: center;
+    overflow-x: auto;
+
+    > header {
+      width: 100%;
+      height: $header-height;
+      border-bottom: 1px solid $wix-color-dark60;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    > button {
+      margin: 24px 0;
+    }
+
+    .wix-list-header {
+      display: block;
+      height: $list-header-height;
+      line-height: $list-header-height;
+      padding-left: $nav-padding-left;
+      color: $wix-color-dark50;
+      font-size: $list-header-font-size;
+      font-family: $list-header-font-family;
+      text-align: left;
+    }
+
+    > ul {
+      @extend %wix-nav-list;
+    }
+
+    > .wix-nav-secondary-list {
+      li {
+        height: $secondary-list-item-height;
+        line-height: $secondary-list-item-height;
+      }
+    }
+
+    footer {
+      height: $footer-height;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+    }
+
+    .wix-nav-footer-item {
+      border: 0;
+      outline: 0;
+      height: 100%;
+      box-sizing: border-box;
+      background-color: $footer-item-backgound-color;
+      flex: 1;
+      border-right: 1px solid $wix-color-dark80;
+      vertical-align: bottom;
+      cursor: pointer;
+
+      &.is-width-fixed {
+        flex: none;
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+
+  @each $skin, $color in $skins-map {
+    @include wix-style-nav-skin($skin);
+  }
+}
+
+@include wix-style-nav();
+@include wix-style-nav-custom($skin-color-custom);

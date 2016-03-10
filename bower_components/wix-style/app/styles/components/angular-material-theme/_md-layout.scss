@@ -1,0 +1,60 @@
+// MD Layout
+//
+// <a class="link-for-doc" href="../#/test-component-page/angular-material-documentation#md-layout"><a>
+//
+// Styleguide 4.6
+//
+
+$grid-gutter-width: 36px;
+
+.wix-layout {
+
+  // scss-lint:disable ImportantRule
+  .wix-block-example {
+    background: $wix-color-white;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    border-radius: 6px;
+    height: 145px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 5px !important;
+    box-sizing: border-box;
+
+    &.is-large {
+      height: 145px * 2 + $grid-gutter-width;
+    }
+
+  }
+
+  // override margin inheritance
+  .layout-margin > *,
+  .layout-margin-gt-sm > *,
+  .layout-margin-md > *,
+  .layout-margin > .flex,
+  .layout-margin > .flex-gt-sm,
+  .layout-margin > .flex-md {
+    margin: 0;
+  }
+
+  .layout-margin,
+  .layout-margin-gt-sm,
+  .layout-margin-md {
+    margin: $grid-gutter-width / 2;
+  }
+
+  // override padding inheritance
+  .layout-padding > *,
+  .layout-padding-gt-sm > *,
+  .layout-padding-md > *,
+  .layout-padding > .flex,
+  .layout-padding > .flex-gt-sm,
+  .layout-padding > .flex-md {
+    padding: 0;
+  }
+
+  // scss-lint:disable ImportantRule
+  .layout-padding,
+  .layout-padding-gt-sm,
+  .layout-padding-md {
+    padding: $grid-gutter-width / 2 !important;
+  }
+}

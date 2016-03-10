@@ -1,0 +1,204 @@
+// Toggle
+//
+// This is the toggle button section
+//
+// markup:
+// <span ng-init="someData = true"><wix-toggle ng-model="someData"> </wix-toggle></span>
+// Toggle is {{someData? 'on':'off'}}
+//
+// Styleguide 3.10
+//
+
+// Toggle - Large
+//
+// This is toggle button in large size
+//
+// markup:
+// <div> <wix-toggle></wix-toggle> Default </div>
+// <br>
+// <div ng-init="someData2 = true"> <wix-toggle ng-model="someData2"></wix-toggle> Default Toggle On </div>
+// <br>
+// <div><wix-toggle disabled="true"></wix-toggle> Disabled</div>
+// <br>
+// <div ng-init="someData4 = true"><wix-toggle disabled="true" ng-model="someData4"></wix-toggle> Disabled Toggle Off </div>
+//
+// Styleguide 3.10.1
+//
+
+// Toggle - Small
+//
+// This is toggle button in small size
+//
+// markup:
+// <div><wix-toggle class='is-toggle-small'></wix-toggle> Default</div>
+// <br>
+// <div ng-init="otherData2 = true"> <wix-toggle class='is-toggle-small' ng-model="otherData2"></wix-toggle> Default Toggle On </div>
+// <br>
+// <div><wix-toggle class='is-toggle-small' ng-model="otherData3" disabled="true"></wix-toggle> Disabled </div>
+// <br>
+// <div ng-init="otherData4 = true"><wix-toggle class='is-toggle-small' disabled="true" ng-model="otherData4"></wix-toggle> Disabled Toggle Off </div>
+//
+// Styleguide 3.10.2
+//
+
+// Toggle - External label
+//
+// This external label will trigger the toggle
+//
+// markup:
+// <wix-toggle ng-model="externalLabel" id="externalLabel"></wix-toggle> Toggle is {{externalLabel? 'on':'off'}}
+// <br> <br>
+// <label for="externalLabel">External label - click me</label>
+//
+// Styleguide 3.10.3
+//
+
+@mixin _wix-style-toggle {
+
+  // scss-lint:disable NestingDepth
+  $color-on: $wix-color-blue10;
+  $color-off: $wix-color-blue40;
+  $color-on-hover: #54b8f2;
+  $color-off-hover: $wix-color-blue30;
+  $color-disabled: $wix-color-gray20;
+  $circle-color: $wix-color-dark80;
+
+  $toggle-width: 45px;
+  $toggle-height: 24px;
+
+  $toggle-small-width: 36px;
+  $toggle-small-height: 20px;
+
+  $icon-font-size: 7px;
+  $icon-font-size-small: 6px;
+
+  %visuallyhidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+
+  .wix-toggle {
+    @include user-select(none);
+    display: inline-block;
+
+    span {
+      position: relative;
+      width: $toggle-width;
+      height: $toggle-height;
+      display: inline-block;
+      border-radius: 999px;
+      background-color: $color-off;
+      color: $color-off;
+      vertical-align: middle;
+      transition: background-color .1s;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      .toggle-circle {
+        @extend .wix-style-svg-font-icons-toggle-off;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        display: block;
+        width: $toggle-height - 2px;
+        height: $toggle-height - 2px;
+        line-height: $toggle-height - 2px;
+        background-color: $circle-color;
+        border-radius: 999px;
+        box-sizing: border-box;
+        transition: left .25s ease-out, margin-left .25s ease-out;
+        box-shadow: 0 2px 1px 0 rgba(48, 91, 152, .5);
+        font-size: 12px;
+        text-align: center;
+
+        &:before {
+          @extend .wix-style-svg-font-icons;
+          line-height: inherit;
+          font-size: 2px;
+          color: $color-off-hover;
+        }
+      }
+
+      &:hover {
+        color: $color-off-hover;
+        background-color: $color-off-hover;
+      }
+    }
+
+    [type="checkbox"] {
+      @extend %visuallyhidden;
+
+      &:checked {
+        + span {
+          color: $color-on;
+          background-color: $color-on;
+
+          .toggle-circle {
+            @extend .wix-style-svg-font-icons-toggle-on;
+            left: 100%;
+            margin-left: -$toggle-height + 1px;
+
+            &:before {
+              font-size: $icon-font-size;
+              color: inherit;
+            }
+          }
+
+          &:hover {
+            color: $color-on-hover;
+            background-color: $color-on-hover;
+          }
+        }
+      }
+
+      &:disabled {
+        + span {
+          color: $color-disabled;
+          background-color: $color-disabled;
+          pointer-events: none;
+          cursor: default;
+
+          .toggle-circle {
+            box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .2);
+
+            &:before {
+              color: inherit;
+            }
+          }
+        }
+      }
+
+      &.is-toggle-small {
+
+        + span {
+          width: $toggle-small-width;
+          height: $toggle-small-height;
+
+          .toggle-circle {
+            width: $toggle-small-height - 2px;
+            height: $toggle-small-height - 2px;
+            line-height: $toggle-small-height - 2px;
+          }
+        }
+
+        &:checked + span .toggle-circle {
+          margin-left: - $toggle-small-height + 1px;
+
+          &:before {
+            font-size: $icon-font-size-small;
+          }
+        }
+      }
+    }
+  }
+
+  // scss-lint:enable NestingDepth
+}
+
+@include _wix-style-toggle();

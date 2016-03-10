@@ -1,0 +1,40 @@
+{
+  "name": "wix-style",
+  "version": "2.2.442",
+  "main": "app/styles/style.scss",
+  "ignore": [
+    ".*",
+    "!dist/.tmp",
+    "Gemfile*",
+    "Gruntfile.js",
+    "pom.xml",
+    "/*.json",
+    "*.conf.js",
+    "*-conf.js",
+    "app/*",
+    "!app/styles",
+    "test/*",
+    "!test/lib",
+    "dist/bower_components",
+    "dist/concat",
+    "dist/_debug*",
+    "dist/styleguide",
+    "visual-regression",
+    "maven",
+    "*.sublime*"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-translate": "~1.1.0",
+    "angular-i18n": "~1.4.0",
+    "angular-material": "~1.0.0"
+  },
+  "devDependencies": {
+    "angular-route": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "es5-shim": "~2.1.0"
+  },
+  "resolutions": {
+    "angular": "~1.4.0"
+  }
+}

@@ -1,0 +1,38 @@
+<div ng-init="items=[{'name':'List Item 1', 'id': 1}, {'name':'List Item 2', 'id': 2}]; a=2;">
+    <button ng-click="a=a+1; items.push({'name':'List Item '+a, 'id': a});">Add</button>
+    <wix-list
+            ng-model="items"
+            draggable-item="true"
+            checkable-property="checked"
+            content-template="views/test-component-page/wix-list-content-template-example.html"
+            transcluded="false"
+           >
+        <!--<wix-list-item ng-repeat="item in items track by $index" ng-class="{'empty': item.empty}" index="{{$index}}">-->
+            <!--<div class="wix-list-item-blue-section" ng-if="!checkableItem() && !imageSquare()"></div>-->
+            <!--<wix-checkbox ng-class="{'wix-list-item-checkbox-circular-image': !imageSquare()}"-->
+                          <!--ng-if="checkableItem()"></wix-checkbox>-->
+            <!--<div class="wix-list-item-content"-->
+                 <!--ng-class="imageSquare() ? 'wix-list-square-image' : 'wix-list-circular-image'">-->
+                <!--<img class="wix-list-item-image">-->
+                <!--<div class="wix-list-item-content-body">-->
+                    <!--<div class="wix-list-item-title">{{item.name}}</div>-->
+                    <!--{{item.name}}-->
+
+                    <!--<div>-->
+                        <!--<div class="wix-list-item-title">{{item.name}}</div>-->
+                        <!--{{item.name}}-->
+                    <!--</div>-->
+
+                    <!--<div>-->
+                        <!--<div class="wix-list-item-title">{{item.name}}</div>-->
+                        <!--{{item.name}}-->
+                    <!--</div>-->
+
+                    <!--<div class="wix-list-item-title">{{item.id}}</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="wix-list-draggable" ></div>-->
+        <!--</wix-list-item>-->
+    </wix-list>
+    <p id="wix-list-dump">{{items}}</p>
+</div>

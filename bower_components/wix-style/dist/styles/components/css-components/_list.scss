@@ -1,0 +1,214 @@
+// Lists items
+//
+// <div class="under-constructions"></div>
+// Wix List can be used blank or one of suggested templates can be used in order to get following styles:
+//
+// markup:
+//<div class="wix-list">
+//  <div class="wix-list-item">
+//    <wix-checkbox class="wix-list-checkbox-circular-image"></wix-checkbox>
+//    <div class="wix-list-item-content wix-list-circular-image">
+//      <img src="../images/list-image.png">
+//      <div class="wix-list-item-content-body">
+//        <div><span class="wix-typography-body">SmartWatch Watchband  brown and white</span></div>
+//        <div><span class="wix-typography-body">$12345.99</span></div>
+//        <div><span class="wix-typography-body">In stock</span></div>
+//        <div><span class="wix-typography-body">Visible</span></div>
+//      </div>
+//    </div>
+//  </div>
+//  <div class="wix-list-item">
+//    <wix-checkbox class="wix-list-checkbox-circular-image"></wix-checkbox>
+//    <div class="wix-list-item-content wix-list-circular-image">
+//      <img src="../images/list-image.png">
+//      <div class="wix-list-item-content-body">
+//        <div><span class="wix-typography-body">SmartWatch Watchband  brown and white</span></div>
+//        <div><span class="wix-typography-body">$12345.99</span></div>
+//        <div><span class="wix-typography-body">In stock</span></div>
+//        <div><span class="wix-typography-body">Visible</span></div>
+//      </div>
+//    </div>
+//  </div>
+//  <div class="wix-list-item">
+//    <wix-checkbox class="wix-list-checkbox-circular-image"></wix-checkbox>
+//    <div class="wix-list-item-content wix-list-circular-image">
+//      <img src="../images/list-image.png">
+//      <div class="wix-list-item-content-body">
+//        <div><span class="wix-typography-body">SmartWatch Watchband  brown and white</span></div>
+//        <div><span class="wix-typography-body">$12345.99</span></div>
+//        <div><span class="wix-typography-body">In stock</span></div>
+//        <div><span class="wix-typography-body">Visible</span></div>
+//      </div>
+//    </div>
+//  </div>
+//</div>
+//
+// Styleguide 2.7
+
+// List items with square image and checkbox
+//
+// markup:
+//<div class="wix-list">
+//  <div class="wix-list-item">
+//    <wix-checkbox></wix-checkbox>
+//    <div class="wix-list-item-content wix-list-square-image">
+//      <img src="../images/list-image.png">
+//      <div class="wix-list-item-content-body">
+//        <div><span class="wix-typography-body">SmartWatch Watchband  brown and white</span></div>
+//        <div><span class="wix-typography-body">$12345.99</span></div>
+//        <div><span class="wix-typography-body">In stock</span></div>
+//        <div><span class="wix-typography-body">Visible</span></div>
+//      </div>
+//    </div>
+//  </div>
+//</div>
+//
+// Styleguide 2.7.1
+//
+
+// List items with color bar
+//
+// markup:
+//<div class="wix-list">
+//  <div class="wix-list-item">
+//    <div class="wix-list-item-section" style="background-color: $wix-color-blue20"></div>
+//    <div class="wix-list-item-content wix-list-circular-image">
+//      <img src="../images/list-image.png">
+//      <div class="wix-list-item-content-body">
+//        <div>
+//          <div class="wix-typography-h3">Chuck Noris/ Pickup</div>
+//          <div>
+//            <span class="wix-typography-body">#239846572  </span>
+//            <span class="wix-typography-body">$89.99</span>
+//          </div>
+//        </div>
+//        <div><div class="wix-typography-body-small">35 Minutes ago</div><div>05m 02s left</div></div>
+//      </div>
+//    </div>
+//  </div>
+//</div>
+//
+// Styleguide 2.7.2
+//
+
+// List items with drag handler
+//
+// There is a design for drag handler, This project does NOT handle the dragging itself and it should be implemented by the developer who uses this component.
+//
+// markup:
+//<div class="wix-list">
+//  <div class="wix-list-item">
+//    <div class="wix-list-item-content">
+//      <img src="../images/list-image.png">
+//      <div class="wix-list-item-content-body">
+//        <div><div>The beach view condo</div><div><span>7 rooms</span></div></div>
+//      </div>
+//    </div>
+//    <div class="wix-list-draggable"></div>
+//  </div>
+//</div>
+//
+// Styleguide 2.7.3
+//
+
+
+@mixin wix-style-list() {
+  $wix-list-item-font-colour: #2b5672;
+  $wix-list-item-blue-section-background-colour: #5fb0f5;
+
+  .wix-list {
+    display: flex;
+    flex-direction: column;
+    background-color: $wix-color-dark70;
+  }
+
+  .wix-list-item {
+    border-radius: 8px;
+    background-color: $wix-color-dark80;
+    box-shadow: 0 2px 0 0 rgba(228, 228, 228, .59);
+    min-width: 200px;
+    min-height: 108px;
+    margin: 6px 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $wix-list-item-font-colour;
+    font-size: 16px;
+
+    .wix-list-item-section {
+      width: 6px;
+      min-height: 108px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .wix-list-item-content {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+
+      &.wix-list-circular-image img {
+        min-width: 0;
+        height: 0;
+        padding: 33px;
+        margin: 0 0 0 38px;
+        border-radius: 33px;
+        background: url('/images/avatar.svg') center no-repeat;
+      }
+
+      &.wix-list-square-image img {
+        min-width: 0;
+        height: 0;
+        padding: 54px 75px;
+        margin-left: -1px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        background: url('/images/list-image.png') center no-repeat;
+      }
+
+      .wix-list-item-content-body {
+        margin-left: 38px;
+        margin-right: 38px;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    wix-checkbox {
+      margin-right: 14px;
+      margin-left: 14px;
+
+      &.wix-list-checkbox-circular-image {
+        margin-left: 20px;
+        margin-right: -15px;
+      }
+
+      + .wix-list-item-content.wix-list-square-image img {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    .wix-list-draggable {
+      width: 30px;
+      height: 46px;
+      margin: 0 36px;
+      background: url('/images/drag.svg') center no-repeat;
+    }
+
+    .wix-list-draggable:active {
+      background-color: $wix-color-blue50;
+      border-radius: 6px;
+    }
+
+  }
+
+  wix-list-item:hover {
+    background-color: $wix-color-blue40;
+  }
+}
+
+@include wix-style-list();

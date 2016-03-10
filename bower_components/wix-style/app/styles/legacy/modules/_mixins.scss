@@ -1,0 +1,11 @@
+// styleguide:ignore:start
+// scss-lint:disable all
+
+// This file is used to join all mixins into one file
+
+@import "mixins-common";
+@import "mixins-spacing";
+@import "mixins-layout";
+
+// scss-lint:enable all
+// styleguide:ignore:end

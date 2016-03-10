@@ -1,0 +1,9 @@
+<wix-list-item ng-repeat="item in items track by $index" ng-class="{'empty': item.empty}" index="{{$index}}" ng-if="!transcluded">
+    <div class="wix-list-item-blue-section" ng-if="!checkableItem() && !imageSquare()"></div>
+    <wix-checkbox ng-class="{'wix-list-item-checkbox-circular-image': !imageSquare()}"
+                  ng-if="checkableProperty" ng-model="item.checked"></wix-checkbox>
+    <div class="wix-list-item-content" ng-include="contentTemplate"
+         ng-class="imageSquare() ? 'wix-list-square-image' : 'wix-list-circular-image'"></div>
+    <div class="wix-list-draggable" ng-if="draggableItem"></div>
+</wix-list-item>
+<div ng-transclude="true"></div>

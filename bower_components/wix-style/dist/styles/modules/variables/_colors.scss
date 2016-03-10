@@ -1,0 +1,128 @@
+// Wix Colors
+//
+// Styleguide 1.1
+//
+
+// Dark Colors
+//
+// $wix-color-dark10 - dark10
+// $wix-color-dark20 - dark20
+// $wix-color-dark30 - dark30
+// $wix-color-dark40 - dark40
+// $wix-color-dark50 - dark50
+// $wix-color-dark60 - dark60
+// $wix-color-dark70 - dark70
+// $wix-color-dark80 - dark80
+//
+// markup:
+// <span style="background: {$modifiers};" class="styleguide-color">{$modifiers}</span>
+//
+// Styleguide 1.1.1
+//
+
+$wix-color-dark10: #162d3d;
+$wix-color-dark20: #20455e;
+$wix-color-dark30: #577083;
+$wix-color-dark40: #7a92a5;
+$wix-color-dark50: #b6c1cd;
+$wix-color-dark60: #dfe5eb;
+$wix-color-dark70: #f0f4f7;
+$wix-color-dark80: #ffffff;
+
+// Blue Colors
+// 
+// $wix-color-blue03 - blue03
+// $wix-color-blue05 - blue05
+// $wix-color-blue10 - blue10
+// $wix-color-blue20 - blue20
+// $wix-color-blue30 - blue30
+// $wix-color-blue40 - blue40
+// $wix-color-blue50 - blue50
+// $wix-color-blue60 - blue60
+//
+// markup:
+// <span style="background: {$modifiers};" class="styleguide-color">{$modifiers}</span>
+//
+// Styleguide 1.1.2
+// 
+
+$wix-color-blue03: #2b81cb;
+$wix-color-blue05: #3a95d1;
+$wix-color-blue10: #3899ec;
+$wix-color-blue20: #4eb7f5;
+$wix-color-blue30: #c1e4fe;
+$wix-color-blue40: #daeffe;
+$wix-color-blue50: #eaf7ff;
+$wix-color-blue60: #f4fafe;
+
+// Other Colors
+//
+// $wix-color-white - alias to $wix-color-dark80 (D9)
+// $wix-color-purple03 - purple03
+// $wix-color-purple10 - purple10
+// $wix-color-purple20 - purple20
+// $wix-color-orange03 - orange03
+// $wix-color-orange10 - orange10
+// $wix-color-orange20 - orange20
+// $wix-color-red03 - red03
+// $wix-color-red05 - red05
+// $wix-color-red10 - red10
+// $wix-color-red20 - red20
+// $wix-color-red30 - red30
+// $wix-color-gray10 - gray10
+// $wix-color-gray20 - gray20
+// $wix-color-gray30 - gray30
+// $wix-color-green03 - green03
+// $wix-color-green05 - green05
+// $wix-color-green10 - green10
+// $wix-color-green20 - green20
+// $wix-color-green30 - green30
+// $wix-color-yellow03 - yellow03
+// $wix-color-yellow05 - yellow05
+// $wix-color-yellow10 - yellow10
+// $wix-color-yellow20 - yellow20
+// $wix-color-yellow30 - yellow30
+//
+// markup:
+// <span style="background: {$modifiers};" class="styleguide-color">{$modifiers}</span>
+//
+// Styleguide 1.1.3
+//
+
+$wix-color-white: $wix-color-dark80;
+
+//purple
+$wix-color-purple03: #8e21b1;
+$wix-color-purple10: #aa4dc8;
+$wix-color-purple20: #cd68ed;
+
+//orange
+$wix-color-orange03: #ea5f0e;
+$wix-color-orange10: #fb7d33;
+$wix-color-orange20: #ff9a48;
+
+//red
+$wix-color-red03: #d6453d;
+$wix-color-red05: #d8504c;
+$wix-color-red10: #ee5951;
+$wix-color-red20: #ff6666;
+$wix-color-red30: #ffd7d7;
+
+//gray
+$wix-color-gray10: #c8c8c8;
+$wix-color-gray20: #dadada;
+$wix-color-gray30: #f1f1f1;
+
+//green
+$wix-color-green03: #44823f;
+$wix-color-green05: #61ad5a;
+$wix-color-green10: #60bc57;
+$wix-color-green20: #80c979;
+$wix-color-green30: #c9eebc;
+
+//yellow
+$wix-color-yellow03: #c68801;
+$wix-color-yellow05: #eda200;
+$wix-color-yellow10: #fdb10c;
+$wix-color-yellow20: #fac249;
+$wix-color-yellow30: #fef0ba;

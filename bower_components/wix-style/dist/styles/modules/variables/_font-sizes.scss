@@ -1,0 +1,23 @@
+// Font sizes
+//
+// $wix-font-size-main-header - 72px;
+// $wix-font-size-h1 - 36px;
+// $wix-font-size-h2 - 24px;
+// $wix-font-size-h3 - 20px;
+// $wix-font-size-text - 16px;
+// $wix-font-size-text-small - 14px;
+//
+// markup:
+// <div style="font-size: {$modifiers};" class="styleguide-font-size">{$modifiers}</div>
+//
+// Styleguide 1.3
+
+$wix-font-size-main-header: 72px;
+
+$wix-font-size-h1: 36px;
+$wix-font-size-h2: 24px;
+$wix-font-size-h3: 20px;
+
+$wix-font-size-text: 16px;
+$wix-font-size-text-small: 14px;
+

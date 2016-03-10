@@ -1,0 +1,260 @@
+// Text Input
+//
+// This is the Wix Text Input Component.<br/>
+//
+// <h4>Features</h4>
+// Supports all native form validations (like required, email, number, etc...).<br/>
+// Supports browser tab navigation, focus, selecting with enter & space.<br/>
+//
+// <h4>How to use?</h4>
+// Just use the <strong>wix-input</strong> element with attributes of Input element (placeholder, name, etc...).<br/>
+// Icons in Error state can be added with the <strong>icon</strong> attribute.
+//
+// markup:
+// <wix-input type="text" name="inputName" placeholder="Placeholder" ng-model="param"></wix-input>
+//
+// sg-wrapper:
+// <div class="styleguide-input">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.3
+//
+
+// Text Input - States
+//
+// :focus - Focus state.
+// :hover - Hover state.
+// disabled - Disabled state.
+//
+// markup:
+// <wix-input type="text" name="inputName" placeholder="Placeholder" class="{$modifiers}" ng-model="param" {$modifiers}></wix-input>
+//
+// sg-wrapper:
+// <div class="styleguide-input">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.3.1
+//
+
+// Text Input - Error state
+//
+// The error is presented in two cases:
+// <ul>
+// <li>
+// In case the input field is invalid and dirty (meaning that the input field was modified by the user)
+// </li>
+// <li>
+// In case the input field is invalid and wrapped by the class <i>ng-submitted</i>. This class is added by angular to a form which was submitted.<br>
+// One can add this class manually when errors are needed to be presented even before touching them (when they are still pristine) and invalid.
+// </li>
+// </ul>
+// There are 3 versions of the Error state - two types of error tooltip + a mode that does not present the error at all (suppresses the error).
+//
+// error - Error state # 1
+// error2 - Error state # 2
+// suppress-error - Suppress show error state even when .error/.ng-invalid class exists (e.g. when the red border should wrap more than one field).
+//
+// markup:
+// <div class="ng-submitted"><wix-input type="text" name="inputName" placeholder="Placeholder" class="{$modifiers}" ng-model="param" required="required"></wix-input></div>
+//
+// sg-wrapper:
+// <div class="styleguide-input">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.3.2
+//
+
+// Text Input - Error message
+//
+// If wix-input element has class .error you can add an error message that will be shown when user hovers on the error icon. Currently there is only a tooltip error type.<br/>
+// Note: the icon is shown when input has class .ng-invalid <br/>
+//
+// markup:
+// <h1>Basic Example</h1>
+// <div class="ng-submitted">
+// <div ng-init="param='Hover on the ! sign to see what is wrong with this input field'"></div>
+// <wix-input type="text" name="inputName" class="error" error-message="Input must contain at least one number" error-type="tooltip" ng-model="param" ng-pattern="/[0-9]/" required style="width: 600px"></wix-input>
+// <h1>Email Validation Example</h1>
+// <div ng-init="param2='I am not a valid email address, change me to see error is gone.'"></div>
+// <wix-input class="error" type="email" ng-model="param2" error-message="This is not a valid email address" error-type="tooltip" style="width: 600px;"></wix-input>
+// <button class="wix-button" ng-click="param2='some@mail.com'" style="margin-top: 30px;">Change input text to a valid email</button>
+// </div>
+//
+// Styleguide 3.3.3
+//
+
+// Text Input - Multi-line
+//
+// Use rows="<i>number</i>" for multi-line text input (textarea)
+//
+// markup:
+// <wix-input type="text" name="inputName" placeholder="Placeholder" rows="3" ng-model="param" required></wix-input>
+//
+// Styleguide 3.3.4
+//
+
+// Using in forms
+//
+// As mentioned in <i>Error State</i> section, when wrapped inside a form, the errors are only presented when the field is dirty (touched) or the form is submitted.<br>
+// This can be utilized in order to create angular based forms which are using <i>wix-style</i> inputs.<br>
+// <b>Note:</b> Angular forms requires the <i>novalidate</i> attribute to the form (so browsers' HTML5 validations are not triggered) and that each input has the <i>name</i> attribute with a unique value
+//
+// markup:
+// <form novalidate>
+//  <div ng-init="param = 'John'">Name:</div>
+//  <div><wix-input class="error" type="text" error-message="This field is required" error-type="tooltip" name="inputName" placeholder="First Name" ng-model="param" required="required"></wix-input></div>
+//  <div>Last Name:</div>
+//  <div><wix-input class="error" type="text" error-message="This field is required" error-type="tooltip" name="inputLastName" placeholder="Last Name" ng-model="paramLastName" required="required"></wix-input></div>
+//  <br>
+//  <div><button class="wix-button" type="submit">Submit</button></div>
+//  <p>
+//  This simple form has two required fields, one has a default value which makes it valid and the second is required and empty,<br>
+//  If you delete the text on the first input, it will become invalid and dirty so the error is presented, submitting the form will make the form submitted so the error on the second field will also appear.
+//  </p>
+// </form>
+//
+// Styleguide 3.3.5
+//
+
+// Placeholder Mixin
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+@mixin _wix-style-input() {
+
+  // Variables
+  $input-background-color-default: transparent;
+  $input-background-color-hover: $wix-color-blue50;
+
+  $input-border-color-default: $wix-color-blue30;
+  $input-border-color-focus: $wix-color-blue20;
+  $input-border-color-error: $wix-color-red10;
+  $input-border-color-disabled: $wix-color-gray10;
+
+  $input-font-size-text: $wix-font-size-text;
+  $input-font-size-icon: 12px;
+
+  $input-error-icon-color: #ffffff;
+  $input-error-icon-background-color: $wix-color-red10;
+  $input-error2-icon-background-color: #fce6e5;
+
+  $input-placeholder-color: $wix-color-dark50;
+
+  %wix-style-input-text-error {
+    border: 1px solid $input-border-color-error;
+
+    &:hover {
+      background: $input-background-color-default;
+    }
+
+    &.error + .icon {
+      @extend %wix-style-input-text-error-icon;
+    }
+
+    &.error2 + .icon {
+      @extend %wix-style-input-text-error2-icon;
+    }
+  }
+
+  %wix-style-input-text-error-icon {
+    @extend .wix-style-svg-font-icons;
+    border-radius: 100%;
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: $input-font-size-icon;
+    line-height: $input-font-size-icon;
+    padding: 5px 7px 9px;
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    text-align: center;
+    background: $input-error-icon-background-color;
+    color: $input-error-icon-color;
+  }
+
+  %wix-style-input-text-error2-icon {
+    @extend %wix-style-input-text-error-icon;
+    background: $input-error2-icon-background-color;
+    color: $input-error-icon-background-color;
+  }
+
+  // Styles
+  %wix-style-input-text {
+    line-height: 19px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 10px;
+    margin: 0;
+    border-radius: 6px;
+    border: 1px solid $input-border-color-default;
+    background: $input-background-color-default;
+    outline: none;
+    font-size: $input-font-size-text;
+    height: 36px;
+
+    @include placeholder {
+      font-size: $input-font-size-text;
+      color: $input-placeholder-color;
+      font-weight: normal;
+      opacity: 1;
+    }
+
+    &:hover {
+      background: $input-background-color-hover;
+    }
+
+    &.pseudo-class-focus,
+    &:focus {
+      border: 1px solid $input-border-color-focus;
+
+      &:hover {
+        background: $input-background-color-default;
+      }
+    }
+
+    &:disabled {
+      border-color: $input-border-color-disabled;
+
+      &:hover {
+        background: $input-background-color-default;
+      }
+    }
+
+    &:invalid,
+    &:-moz-submit-invalid,
+    &:-moz-ui-invalid {
+      box-shadow: none;
+    }
+
+    + .icon {
+      display: none;
+    }
+
+    &:not(.suppress-error) {
+      &.ng-invalid.ng-dirty,
+      .ng-submitted &.ng-invalid {
+        @extend %wix-style-input-text-error;
+      }
+    }
+  }
+
+  .wix-input {
+    position: relative;
+    display: inline-block;
+
+    // Implementation
+    input,
+    textarea {
+      @extend %wix-style-input-text;
+    }
+  }
+}
+
+@include _wix-style-input();

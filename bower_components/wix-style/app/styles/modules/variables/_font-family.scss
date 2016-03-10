@@ -1,0 +1,23 @@
+// Font Family
+//
+// In order to use these variables and font families you need to include wix's fontFace.css file to your project: <br/>
+// <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css&quot;&gt;</code>
+//
+// $wix-font-family-helvetica-25 - Helvetica Neue 25
+// $wix-font-family-helvetica-35 - Helvetica Neue 35
+// $wix-font-family-helvetica-45 - Helvetica Neue 45
+// $wix-font-family-helvetica-55 - Helvetica Neue 55
+// $wix-font-family-helvetica-65 - Helvetica Neue 65
+// $wix-font-family-helvetica-75 - Helvetica Neue 75
+//
+// markup:
+// <div style='font-family: {$modifiers};' class="styleguide-font-family">The Big Yellow Musa Jumped Over The Lazy Font Variable</div>
+//
+// Styleguide 1.2
+
+$wix-font-family-helvetica-25: "HelveticaNeueW01-UltLt", "HelveticaNeueW02-UltLt", "HelveticaNeueW10-25UltL", sans-serif;
+$wix-font-family-helvetica-35: "HelveticaNeueW01-Thin", "HelveticaNeueW02-Thin", "HelveticaNeueW10-35Thin", sans-serif;
+$wix-font-family-helvetica-45: "HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Ligh", "HelveticaNeueW10-45Ligh", sans-serif;
+$wix-font-family-helvetica-55: "HelveticaNeueW01-55Roma", "HelveticaNeueW02-55Roma", "HelveticaNeueW10-55Roma", sans-serif;
+$wix-font-family-helvetica-65: "HelveticaNeueW01-65Medi", "HelveticaNeueW02-65Medi", "HelveticaNeueW10-65Medi", sans-serif;
+$wix-font-family-helvetica-75: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW10-75Bold", sans-serif;

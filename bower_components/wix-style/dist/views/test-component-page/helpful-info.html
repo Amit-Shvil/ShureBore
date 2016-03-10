@@ -1,0 +1,66 @@
+<h3> Testing directives in e2e</h3>
+<h3> List of all the test pages for the angular components </h3>
+<div ng-repeat="componentName in main.angularComponents">
+    <a ng-href="/#/test-component-page/{{componentName}}">{{componentName}} page</a>
+</div>
+<h3> Configuration </h3>
+<style>
+    .yellow {
+        background: yellow;
+    }
+
+    .aqua {
+        background: aqua;
+    }
+</style>
+<div>
+    <p>
+        <label>If the name of your component is:</label>
+        <input ng-model="main.componentName">
+    </p>
+    <p>
+        <h4>Edit app.js</h4>
+        You need to go to app.js and add your component name to the router array:
+        <code>[.. other components .., <span class="yellow">'{{main.componentName}}'</span>].forEach(</code>
+    </p>
+    <p>
+        <h4>Add the following files</h4>
+        You need to add these files to your project:
+        <br/><br>
+        <code>views/test-component-page/<span class="yellow">{{main.componentName}}</span>-page.html</code> - This is your html test page
+        <br/><br>
+        <code>test/e2e/spec/<span class="yellow">{{main.componentName}}</span>.js</code> - This is your spec page
+        <br>
+    </p>
+    <p>
+        <h4>main-page.js</h4>
+        Use test/e2e/pages/main-page.js to set up your component object (you can copy from other examples)
+        </p>
+    <p>
+    <p>
+        <h4>Adding scope parameters</h4>
+        Go to <code>app/scripts/controllers/main.js</code> and add this variable on your scope:
+        <br/>
+        <br/>
+        <code>
+            this.<span class="aqua">{{main.camelCase(main.componentName)}}</span> = {
+                yourKey: yourValue
+            }
+        </code>
+        <br/>
+        <br/>
+        Then you can use your parameter in your html file:
+        <br/>
+        <br/>
+        <code>
+            <{{main.componentName}} some-attribute="main.<span class="aqua">{{main.camelCase(main.componentName)}}</span>">&lt;{{main.componentName}}></code>
+        </code>
+    </p>
+    <p>
+    <h4>View Directive page</h4>
+        Now you can route to <a ng-href="/#/test-component-page/{{main.componentName}}">/#/test-component-page/<span class="yellow">{{main.componentName}}</span></a> to check your component.
+    </p><p>
+        <h4>How to use mainPage model to navigate to your component</h4>
+        You can easily use this method to see your component: <code>mainPage.navigateToDirective('<span class="yellow">{{main.componentName}}</span>')</code>;
+    </p>
+</div>

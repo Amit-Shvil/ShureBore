@@ -1,0 +1,31 @@
+//grunt-start
+/// <reference path="app/scripts/controllers/mdMessage-window.ctrl.ts" />
+/// <reference path="app/scripts/controllers/message-window.ctrl.ts" />
+/// <reference path="app/scripts/controllers/wix-modal-custom-example.ctrl.ts" />
+/// <reference path="app/scripts/directives/angular-material-theme/md-autocomplete.ts" />
+/// <reference path="app/scripts/directives/angular-material-theme/md-datepicker.ts" />
+/// <reference path="app/scripts/directives/wix-checkbox.ts" />
+/// <reference path="app/scripts/directives/wix-radio.ts" />
+/// <reference path="app/scripts/directives/wix-search.ts" />
+/// <reference path="app/scripts/directives/wix-tabs.ts" />
+/// <reference path="app/scripts/directives/wix-toggle.ts" />
+/// <reference path="app/scripts/directives/wix-wizard.ts" />
+/// <reference path="app/scripts/reference.ts" />
+/// <reference path="app/scripts/typings/angularjs/angular-mocks.d.ts" />
+/// <reference path="app/scripts/typings/angularjs/angular.d.ts" />
+/// <reference path="app/scripts/typings/jasmine/jasmine.d.ts" />
+/// <reference path="app/scripts/typings/jquery/jquery.d.ts" />
+/// <reference path="app/scripts/typings/tsd.d.ts" />
+/// <reference path="test/lib/matchers.jasmine.ts" />
+/// <reference path="test/lib/viewTestMatchers.jasmine.ts" />
+/// <reference path="test/lib/wix-style-test-kit.ts" />
+/// <reference path="test/reference.ts" />
+/// <reference path="test/spec/directives/wix-radio.spec.ts" />
+/// <reference path="test/spec/directives/wix-tabs.spec.ts" />
+/// <reference path="test/spec/directives/wix-toggle.spec.ts" />
+/// <reference path="test/spec/directives/wix-wizard.spec.ts" />
+/// <reference path="test/spec/views/wix-message-window.spec.ts" />
+/// <reference path="test/typings/jasminMatchers.ts" />
+/// <reference path="test/typings/viewTestMatchers.jasmine.d.ts" />
+//grunt-end 
+//# sourceMappingURL=reference.js.map

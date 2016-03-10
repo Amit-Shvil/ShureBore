@@ -1,0 +1,137 @@
+// MD Date Picker
+//
+// <a class="link-for-doc" href="../#/test-component-page/angular-material-documentation#md-date-picker"><a>
+//
+// Styleguide 4.2
+//
+
+@mixin _md-datepicker {
+
+  $date-picker-border-radius: 6px;
+
+  .md-calendar-day-header {
+    @include border-top-left-radius($date-picker-border-radius);
+    @include border-top-right-radius($date-picker-border-radius);
+
+    background-color: $wix-color-blue10;
+    color: $wix-color-white;
+
+    th {
+      height: 48px;
+    }
+  }
+
+  .md-calendar-date-selection-indicator:hover {
+    background-color: $wix-color-blue30;
+  }
+
+  .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
+    border-color: $wix-color-blue10;
+  }
+
+  .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
+    background-color: $wix-color-blue10;
+  }
+
+  .md-calendar-month-label {
+    background-color: rgba(255, 255, 255, .94);
+    height: 42px;
+  }
+
+  .md-calendar-date:first-child {
+    padding-left: 24px;
+  }
+
+  .md-calendar-date:last-child {
+    padding-right: 24px;
+  }
+
+  md-calendar {
+    font-size: $wix-font-size-text-small;
+    font-family: $wix-font-family-helvetica-55;
+  }
+
+  .md-calendar-date-selection-indicator {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+  }
+
+  .md-calendar-scroll-container {
+    @include border-bottom-left-radius($date-picker-border-radius);
+    @include border-bottom-right-radius($date-picker-border-radius);
+
+    box-shadow: none;
+  }
+
+  .md-datepicker-calendar {
+    @include border-bottom-left-radius($date-picker-border-radius);
+    @include border-bottom-right-radius($date-picker-border-radius);
+  }
+
+  .md-virtual-repeat-scroller {
+    @include border-bottom-left-radius($date-picker-border-radius);
+    @include border-bottom-right-radius($date-picker-border-radius);
+  }
+
+  .md-datepicker-calendar-pane {
+    @include border-bottom-left-radius($date-picker-border-radius);
+    @include border-bottom-right-radius($date-picker-border-radius);
+    @include border-top-left-radius($date-picker-border-radius + 15px);
+    @include border-top-right-radius($date-picker-border-radius + 15px);
+
+    box-shadow: 0 0 11px 0 rgba(0, 0, 0, .21);
+  }
+
+  .md-datepicker-triangle-button {
+    display: none;
+  }
+
+  .md-datepicker-input-container {
+    margin-left: -11px;
+    line-height: 34px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-color: transparent;
+    width: 100%;
+
+    .md-datepicker-input {
+      width: 100%;
+      font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .md-button.md-icon-button {
+    //width: 24px;
+    line-height: 36px;
+    height: 36px;
+    background-color: $wix-color-white;
+  }
+
+  .md-datepicker-open .md-datepicker-input {
+    height: 18px;
+    margin-left: 0;
+  }
+
+  md-icon {
+    color: $wix-color-blue10;
+  }
+
+  .md-datepicker-open .md-datepicker-calendar-icon {
+    fill: $wix-color-blue10;
+  }
+
+  .md-datepicker-input-mask {
+    display: none;
+  }
+
+  md-datepicker {
+    margin-left: -11px;
+  }
+}
+
+@include _md-datepicker();

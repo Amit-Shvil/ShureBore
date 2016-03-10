@@ -1,0 +1,112 @@
+// Radio Button
+//
+// This is the Radio  section
+//
+// Styleguide 3.8
+
+//
+// markup:
+// <div ng-init="varModel = 5; var1 = 1; var5 = 5;">
+// <span>Model: {{varModel}}</span><br/>
+// <wix-radio ng-model="varModel" ng-value="1"></wix-radio><span>Value = 1</span></br>
+// <wix-radio ng-model="varModel" ng-value="5"></wix-radio><span>Value = 5</span></br>
+// <wix-radio ng-model="varModel" ng-value="{{var1}}" ng-disabled="true"></wix-radio><span>Value = 1 - Disabled</span></br>
+// <wix-radio ng-model="varModel" ng-value="{{var5}}" ng-disabled="true"></wix-radio><span>Value = 5 - Disabled</span></br>
+// </div>
+// <div ng-init="varModel2 = 5; var1 = 1; var5 = 5;">
+// <span>Model: {{varModel2}}</span><br/>
+// <wix-radio id="radio1" ng-model="varModel2" ng-value="1"></wix-radio><span>Value = 1</span>
+// <label for="radio1">&ltLabel&gt for radio1</label></br>
+// <wix-radio id="radio2" ng-model="varModel2" ng-value="5"></wix-radio><span>Value = 5</span>
+// <label for="radio2">&ltLabel&gt for radio2</label></br>
+// </div>
+// <div ng-init="isDisabled = true"><span>=========================</span><br/></br>
+// <span>Toggle Disabled</span></br>
+// <wix-radio ng-model="isDisabled" ng-value="true"></wix-radio><span>True</span>
+// <wix-radio ng-model="isDisabled" ng-value="false"></wix-radio><span>False</span><br/>
+// <wix-radio ng-model="someModel" ng-disabled="isDisabled"></wix-radio>
+//
+// Styleguide 3.8.1
+//
+
+@mixin wix-radio {
+
+  //Colors
+  $radio-hover-background: $wix-color-blue40;
+  $radio-disabled-1: $wix-color-gray20;
+  $radio-disabled-2: $wix-color-gray30;
+
+  $radio-emphasis-color: #3899eb;
+  $radio-active-color: #6eb7fd;
+
+  .visuallyhidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+
+  wix-radio {
+
+    label {
+      margin: 12px;
+      display: inline-block;
+      user-select: none;
+    }
+
+    [type=radio] {
+      @extend .visuallyhidden;
+
+      &:disabled + .wix-radio-inner {
+        border: 1px solid $radio-disabled-1;
+        background-color: $radio-disabled-2;
+        pointer-events: none;
+
+      }
+
+      &:not(:disabled) + .wix-radio-inner {
+        cursor: pointer;
+      }
+
+      &:checked:disabled + .wix-radio-inner:before {
+        background-color: $radio-disabled-1;
+      }
+
+      &:checked:not(:disabled) + .wix-radio-inner:before {
+        background-color: $radio-emphasis-color;
+      }
+    }
+
+    .wix-radio-inner {
+      display: inline-block;
+      border-radius: 50%;
+      border: 1px solid $radio-emphasis-color;
+      width: 15px;
+      height: 15px;
+
+      &:before {
+        content: '';
+        margin-left: 2px;
+        margin-top: 2px;
+        display: block;
+        border-radius: 50%;
+        width: 11px;
+        height: 11px;
+      }
+
+      &:hover:not(:active) {
+        background-color: $radio-hover-background;
+      }
+
+      &:active:before {
+        background-color: $radio-active-color;
+      }
+    }
+  }
+}
+
+@include wix-radio();

@@ -1,0 +1,10 @@
+<div ng-class="{'dropdown-no-hover': openOnClick, 'dropdown-open': isOpen}" class="wix-dropdown">
+    <div class="dropdown-title" ng-click="openOnClick && openDropdown()">{{selectedItem.text}}</div>
+    <ul>
+        <li ng-repeat="item in items" ng-class="{'selected': item.selected}">
+            <a ng-click="selectOption(item)">
+               {{item.text}}
+             </a>
+        </li>
+    </ul>
+</div>

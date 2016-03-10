@@ -1,0 +1,1 @@
+"use strict";try{angular.module("documentsTranslations")}catch(e){angular.module("documentsTranslations",["pascalprecht.translate"])}angular.module("documentsTranslations").config(["$translateProvider",function(a){var b={general:{YO:"Olá"}};a.translations("pt",b),a.translations(b),a.preferredLanguage&&a.preferredLanguage("pt")}]).value("preferredLanguage","pt");

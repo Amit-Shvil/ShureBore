@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- #if( false )
+  Prerequisites from server model:
+  --------------------------------
+  ${locale}, ${debug}, ${experiments},
+  ${newRelicEndUserHeader}, ${newRelicEndUserFooter}
+  ${clientTopology.documentsStaticsUrl},
+  ${clientTopology.staticBaseUrl},
+
+  More details at: http://kb.wixpress.com/display/dashboard/How+to+integrate+server+with+index.vm
+#end -->
+<!--
+  #set( $staticsUrl = $clientTopology.documentsStaticsUrl )
+  #set( $staticBaseUrl = $clientTopology.staticBaseUrl )
+-->
+<html ng-app="documentsApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>documents</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="origin">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link type="image/png" href="//www.wix.com/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="${staticBaseUrl}services/third-party/fonts/Helvetica/fontFace.css">
+    <!-- #if( !${debug} ) -->
+<link rel="stylesheet" href="${staticsUrl}styles/main.css">
+<!-- #else -#if( false )#end->
+<link rel="stylesheet" href="${staticsUrl}_debug_styles/main.css"><!-- #end -->
+    ${newRelicEndUserHeader}
+  </head>
+  <body>
+
+    <!-- Add your site or application content here -->
+    <game-app class="game-app-component"></game-app>
+
+
+    <script src="${staticBaseUrl}services/third-party/jquery/2.0.3/jquery#if(!${debug}).min#{end}.js"></script>
+    <script src="${staticBaseUrl}services/third-party/angularjs/1.5.0/angular#if(!${debug}).min#{end}.js"></script>
+    <script src="${staticBaseUrl}services/third-party/angular-translate/1.1.1/angular-translate#if(!${debug}).min#{end}.js"></script>
+    <script src="${staticsUrl}bower_components/wix-style/dist/scripts/locale/messages_${locale}.js"></script>
+    <script src="${staticsUrl}bower_components/wix-style/dist/scripts/scripts.js"></script>
+    <script src="${staticsUrl}bower_components/angular-animate/angular-animate.js"></script>
+    <script src="${staticsUrl}bower_components/angular-aria/angular-aria.js"></script>
+    <script src="${staticsUrl}bower_components/angular-material/angular-material.js"></script>
+    <!-- #if( !${debug} ) -->
+<script src="${staticsUrl}scripts/modules.js"></script>
+<!-- #else -#if( false )#end->
+<script src="${staticsUrl}bower_components/es6-shim/es6-shim.js"></script>
+<script src="${staticsUrl}bower_components/uri.js/src/URI.js"></script>
+<script src="${staticsUrl}bower_components/wix-angular/dist/wix-angular.js"></script>
+<script src="${staticsUrl}bower_components/wix-bi-logger/dist/scripts/bi-logger/wix-bi-angular.js"></script><!-- #end -->
+    <!-- #if( !${debug} ) -->
+<script src="${staticsUrl}scripts/scripts.js"></script>
+<!-- #else -#if( false )#end->
+<script src="${staticsUrl}_debug_scripts/app.js"></script>
+<script src="${staticsUrl}_debug_scripts/model/dot.js"></script>
+<script src="${staticsUrl}_debug_scripts/components/game-app.component.js"></script>
+<script src="${staticsUrl}_debug_scripts/model/board.js"></script>
+<script src="${staticsUrl}_debug_scripts/model/player.js"></script>
+<script src="${staticsUrl}_debug_scripts/model/line.js"></script>
+<script src="${staticsUrl}_debug_scripts/services/game.js"></script>
+<script src="${staticsUrl}_debug_scripts/components/score-table.js"></script><!-- #end -->
+    <!-- #if( !${debug} ) -->
+<script src="${staticsUrl}scripts/locale/messages_${locale}.js"></script>
+<!-- #else -#if( false )#end->
+<script src="${staticsUrl}_debug_scripts/locale/messages_${locale}.js"></script><!-- #end -->
+
+    <!-- #if( ${enableMocks} ) -->
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+
+    <!-- #if( !${debug} ) -->
+<script src="scripts/mocks.js"></script>
+<!-- #else -#if( false )#end->
+<script src="test/mock/server-api.js"></script><!-- #end -->
+
+    <script>
+      /* jshint ignore:start */
+      if ('${enableMocks}' === 'true') {
+        angular.module('documentsApp').requires.push('documentsAppMocks');
+      }
+    </script>
+    <!-- #end -->
+    <script>
+      angular.module('documentsApp').config(function (wixAngularTopologyProvider, experimentManagerProvider) {
+        wixAngularTopologyProvider.setStaticsUrl('${staticsUrl}');
+        experimentManagerProvider.setExperiments(JSON.parse('${experiments}'));
+      });
+    </script>
+
+    ${newRelicEndUserFooter}
+
+  </body>
+</html>

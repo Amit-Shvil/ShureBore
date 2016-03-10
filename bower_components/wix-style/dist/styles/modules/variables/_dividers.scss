@@ -1,0 +1,21 @@
+// Dividers
+//
+// This is the divider section
+// divider is a subset of color that can be use as a deviders
+//
+// dark50 - $wix-divider-d50 divider
+// dark60 - $wix-divider-d60 divider
+// dark70 - $wix-divider-d70 divider
+// blue40 - $wix-divider-b40 divider
+// blue50 - $wix-divider-b50 divider
+//
+//
+// markup:
+// <div class="styleguide-dividers {$modifiers}" style="border-bottom: $wix-divider-{$modifiers};"> $wix-divider-{{mod.name}} </button>
+//
+// Styleguide 1.4
+$wix-divider-dark50: 1px solid $wix-color-dark50;
+$wix-divider-dark60: 1px solid $wix-color-dark60;
+$wix-divider-dark70: 1px solid $wix-color-dark70;
+$wix-divider-blue40: 1px solid $wix-color-blue40;
+$wix-divider-blue50: 1px solid $wix-color-blue50;

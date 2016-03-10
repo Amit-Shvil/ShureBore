@@ -1,0 +1,76 @@
+// Typography
+//
+// Typography is a combination of font-family, font-size, and font-weight.
+// <br/>
+// <br/>
+// Can be uses as a class like this: <code>class="wix-typography-main-header"</code>
+// <br/>
+// <br/>
+// Or as an @include mixin like this:
+// <code>
+//   .your-class {
+//     @include wix-typography-main-header();
+//   }
+// </code>
+// <br/>
+// <br/>
+// It is not recommended to use <code>@extend</code> for these classes, use the <code>@mixin</code> option instead.
+// <br/>
+// <br/>
+// You can find the mixins code in <a href="https://github.com/wix/wix-style/tree/master/app/styles/modules/mixins/_typography.scss" target="_blank">this file</a>.
+//
+// wix-typography-main-header - mixin: @include wix-typography-main-header();
+// wix-typography-h1 - mixin: @include wix-typography-h1();
+// wix-typography-h2 - mixin: @include wix-typography-h2();
+// wix-typography-h3 - mixin: @include wix-typography-h3();
+// wix-typography-body - mixin: @include wix-typography-body();
+// wix-typography-body-small - mixin: @include wix-typography-body-small();
+// wix-typography-input - mixin: @include wix-typography-input();
+// wix-typography-input-small - mixin: @include wix-typography-input-small();
+//
+// markup:
+// <div class="{$modifiers}" class="styleguide-typgoraphy">{$modifiers}</div>
+//
+// Styleguide 2.4
+//
+
+// @extend classes
+
+.wix-typography-main-header {
+  @include wix-typography-main-header();
+}
+
+.wix-typography-h1 {
+  @include wix-typography-h1();
+}
+
+.wix-typography-h2 {
+  @include wix-typography-h2();
+}
+
+.wix-typography-h3 {
+  @include wix-typography-h3();
+}
+
+.wix-typography-body {
+  @include wix-typography-body();
+}
+
+.wix-typography-body-small {
+  @include wix-typography-body-small();
+}
+
+.wix-typography-input {
+  @include wix-typography-input();
+}
+
+.wix-typography-input-small {
+  @include wix-typography-input-small();
+}
+
+
+
+
+
+
+

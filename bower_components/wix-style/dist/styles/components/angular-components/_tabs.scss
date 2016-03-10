@@ -1,0 +1,355 @@
+// Tabs
+//
+// This is the tabs section
+//
+// Styleguide 3.6
+//
+
+// Default Tabs
+//
+// Here are the default tabs
+//
+// default - White Background
+// .is-tabs-blue - Blue Background
+//
+// markup:
+//<wix-tabs class="{$modifiers}">
+//  <wix-tab label="Tab 1"><p><h3>I'm a tab 1 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//  <wix-tab label="Tab 2"><p><h3>I'm a tab 2 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//  <wix-tab label="Tab 3" active><p><h3>I'm a tab 3 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//</wix-tabs>
+//
+// sg-wrapper:
+// <div class="stylguide-tabs stylguide-tabs-{$modifiers}">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.6.1
+//
+
+// Toggle Tabs
+//
+// Here are the toggle tabs
+//
+// .is-tabs-toggle - Toggle tabs
+// .is-tabs-toggle.is-tabs-blue - Blue Background
+// .is-tabs-toggle.is-tabs-large - Large tabs
+//
+// markup:
+//<wix-tabs class="{$modifiers}">
+//  <wix-tab label="Tab 1"><p><h3>I'm a tab 1 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//  <wix-tab label="Tab 2"><p><h3>I'm a tab 2 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//  <wix-tab label="Tab 3" active><p><h3>I'm a tab 3 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//</wix-tabs>
+//
+// sg-wrapper:
+// <div class="stylguide-tabs stylguide-tabs-{$modifiers}">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.6.2
+//
+
+// Textual Tabs
+//
+// .is-tabs-textual - Textual tabs
+//
+// markup:
+//<wix-tabs class="{$modifiers}">
+//  <wix-tab label="Tab 1"><p><h3>I'm a tab 1 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//  <wix-tab label="Tab 2"><p><h3>I'm a tab 2 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//  <wix-tab label="Tab 3" active><p><h3>I'm a tab 3 content.</h3> Here you can put any content what you want. It could be just text or <strong>some html tags</strong></p></wix-tab>
+//</wix-tabs>
+//
+// sg-wrapper:
+// <div class="stylguide-tabs stylguide-tabs-{$modifiers}">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.6.3
+//
+
+// Dynamic Tabs content
+//
+// default - White Background
+//
+// markup:
+//<wix-tabs class="{$modifiers}">
+//  <wix-tab label="Dynamic content 1"><div ng-init="param1='I am param 1'"><span>param: </span><span>{{param1}}</span></div></wix-tab>
+//  <wix-tab label="Dynamic content 2"><div ng-init="arr=[1, 2, 3]"><span>ng-repeat: </span><div ng-repeat="item in arr">{{item}}</div></div></wix-tab>
+//  <wix-tab label="Dynamic content 3" active><div ng-init="arr=[1, 2, 3]"><span>wix style directive example: </span><wix-search></wix-search></div></wix-tab>
+//</wix-tabs>
+//
+// sg-wrapper:
+// <div class="stylguide-tabs stylguide-tabs-{$modifiers}">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.6.4
+//
+
+
+@mixin wix-style-tabs() {
+  ////Colors
+  $color-selected: $wix-color-blue10;
+  $color-border: $wix-color-blue40;
+  $background-color-hover: $wix-color-blue40;
+  $color-static: $wix-color-dark30;
+  $background-color-container: $wix-color-white;
+  $background-color-container-blue: $wix-color-blue50;
+  $background-color-container-blue-selected: $wix-color-white;
+  $border-bottom-background-color: rgba($wix-color-dark60, .6);
+
+  //common
+  $content-padding-horizontal: 20px;
+  $content-padding-vertical: 10px;
+  $content-padding: $content-padding-vertical $content-padding-horizontal;
+  $transparent: rgba(0, 0, 0, 0);
+
+  //default
+  $background-tabs: $wix-color-white;
+
+  //blue
+  $blue-border-color: $wix-color-blue30;
+
+  //textual
+  $textual-tabs-padding-horizontal: 18px;
+  $textual-tabs-padding-vertical: 15px;
+  $textual-tabs-color: $wix-color-dark40;
+  $textual-tabs-hover-color: $wix-color-dark10;
+
+  //toggle
+  $toggle-tabs-padding-horizontal: 24px;
+  $toggle-tabs-padding-vertical: 9px;
+
+  $active-tab-blue-background-color: $wix-color-blue10;
+  $active-tab-color: $wix-color-white;
+
+  //Spacing
+  $padding-vertical-tab: 20px;
+  $min-height-tab-content: 130px;
+  $width-tab: 270px;
+
+  //Radius
+  $border-radius-main-container: 8px;
+  $border-radius-toggle-tabs: 20px;
+  $wix-tabs-margin-bottom: 10px;
+
+  .wix-tabs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $wix-tabs-margin-bottom;
+
+    .tabs-wrapper {
+      display: table;
+      width: 100%;
+      font-family: $wix-font-family-helvetica-55;
+    }
+
+    .tab-content:not(.active-tab-content) {
+      // scss-lint:disable ImportantRule
+      display: none !important;
+    }
+
+    .active-tab-content {
+      background: $background-color-container;
+      padding: $content-padding;
+      box-sizing: border-box;
+      border-radius: 0 0 $border-radius-main-container $border-radius-main-container;
+      border-bottom: 2px $border-bottom-background-color solid;
+    }
+
+    .tab-container {
+      cursor: pointer;
+      display: table-cell;
+      text-align: center;
+      border-bottom: solid 1px $color-border;
+      border-right: solid 1px $color-border;
+      padding-top: $padding-vertical-tab;
+      padding-bottom: $padding-vertical-tab;
+      text-decoration: none;
+      color: $color-static;
+      background: $background-tabs;
+
+      &:hover:not(.disabled) {
+        background-color: $background-color-hover;
+      }
+
+      &.active,
+      &.active:hover {
+        color: $color-selected;
+        border-bottom-color: $transparent;
+        background-color: $background-tabs;
+      }
+
+      &:first-child {
+        border-radius: $border-radius-main-container 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 $border-radius-main-container 0 0;
+        border-right: 0;
+      }
+    }
+
+    &.is-tabs-blue {
+      .tab-container {
+        background-color: $background-color-container-blue;
+        border: 1px solid $blue-border-color;
+
+        &:not(.active) {
+	      // scss-lint:disable UnnecessaryParentReference, NestingDepth
+          & + .tab-container {
+            border-left-color: $transparent;
+          }
+        }
+
+        // scss-lint:disable NestingDepth
+        &:hover:not(.disabled) {
+          background-color: $background-color-hover;
+        }
+
+        &.active,
+        &.active:hover {
+          background-color: $background-color-container-blue-selected;
+          border-color: $transparent;
+          color: $color-static;
+        }
+      }
+    }
+
+    &.is-tabs-textual {
+
+      .active-tab-content {
+        background: transparent;
+        border: 0;
+      }
+
+      > div {
+        display: block;
+        width: initial;
+      }
+
+      .tabs-wrapper {
+        border-bottom: 1px solid $border-bottom-background-color;
+        overflow: hidden;
+      }
+
+      .tab-container {
+        float: left;
+        width: initial;
+        padding: $textual-tabs-padding-vertical $textual-tabs-padding-horizontal;
+        color: $textual-tabs-color;
+        border: 0;
+        background: inherit;
+        border-radius: 0;
+
+        // scss-lint:disable NestingDepth
+        &:hover:not(.disabled) {
+          color: $textual-tabs-hover-color;
+          background: transparent;
+        }
+
+        // scss-lint:disable NestingDepth
+        &.active,
+        &.active:hover {
+          border-bottom: 2px solid $color-selected;
+          color: $color-selected;
+        }
+      }
+    }
+
+    &.is-tabs-toggle {
+
+      .active-tab-content {
+        background: transparent;
+        border: 0;
+      }
+
+      > div {
+        display: block;
+        width: initial;
+      }
+
+      .tabs-wrapper {
+        text-align: center;
+      }
+
+      .tab-container {
+        padding: $toggle-tabs-padding-vertical $toggle-tabs-padding-horizontal;
+        display: inline-block;
+        width: initial;
+        color: $color-static;
+        border-bottom: 0;
+        border-top: 0;
+        border-left: 0;
+
+        // scss-lint:disable NestingDepth
+        &:last-child {
+          border-radius: 0 $border-radius-toggle-tabs $border-radius-toggle-tabs 0;
+          border-right: 0;
+        }
+
+        // scss-lint:disable NestingDepth
+        &:first-child {
+          border-radius: $border-radius-toggle-tabs 0 0 $border-radius-toggle-tabs;
+        }
+
+        // scss-lint:disable NestingDepth
+        &:hover:not(.disabled) {
+          background: $background-color-hover;
+          color: $color-static;
+        }
+
+        // scss-lint:disable NestingDepth
+        &.active,
+        &.active:hover {
+          background: $active-tab-blue-background-color;
+          color: $active-tab-color;
+        }
+      }
+    }
+
+    &.is-tabs-large {
+      .tabs-wrapper {
+        width: 100%;
+        display: table;
+      }
+
+      .tab-container {
+        display: table-cell;
+      }
+    }
+
+    //different border color for is-tabs-toggle & is-tabs-blue combination
+    // scss-lint:disable MergeableSelector
+    &.is-tabs-toggle.is-tabs-blue {
+      .tab-container,
+      .tab-container:hover {
+        border-color: $color-border;
+      }
+    }
+
+    //special design case for large toggle tabs
+    // scss-lint:disable MergeableSelector
+    &.is-tabs-toggle.is-tabs-large {
+      .tab-container {
+        border-bottom: 2px $border-bottom-background-color solid;
+        padding: $padding-vertical-tab 0;
+
+        // scss-lint:disable NestingDepth
+        &:last-child {
+          border-radius: 0 $border-radius-main-container $border-radius-main-container 0;
+        }
+
+        // scss-lint:disable NestingDepth
+        &:first-child {
+          border-radius: $border-radius-main-container 0 0 $border-radius-main-container;
+        }
+      }
+    }
+  }
+}
+
+@include wix-style-tabs();
+

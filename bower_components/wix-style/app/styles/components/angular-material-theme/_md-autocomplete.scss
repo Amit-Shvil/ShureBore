@@ -1,0 +1,140 @@
+// MD Autocomplete
+//
+// <a class="link-for-doc" href="../#/test-component-page/angular-material-documentation#md-autocomplete"><a>
+//
+// Styleguide 4.3
+//
+
+@mixin _wix-style-md-autocomplete {
+  $autocomplete-height: 36px;
+
+  .md-autocomplete-input {
+    @extend %wix-style-input-text;
+    position: relative;
+    display: inline-block;
+  }
+
+  md-autocomplete {
+    height: $autocomplete-height;
+
+    button {
+      display: none;
+    }
+
+    md-autocomplete-wrap {
+      font-size: $wix-font-size-text;
+      padding: 0;
+      line-height: 24px;
+      display: block;
+      position: relative;
+      cursor: pointer;
+      color: $wix-color-dark10;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: $wix-color-white;
+      height: $autocomplete-height;
+
+      &:focus:not(:disabled) md-select-value {
+        border: 0;
+      }
+
+      md-select-value {
+        border: 0;
+      }
+
+      input:not(.md-input) {
+        font-family: $wix-font-family-helvetica-55;
+        font-size: $wix-font-size-text;
+        font-weight: 300;
+        padding: 6px 10px;
+        border: 1px solid $wix-color-blue30;
+        border-radius: 6px;
+        height: $autocomplete-height;
+        line-height: 19px;
+
+        &.ng-invalid-required.ng-dirty {
+          border: 1px solid $wix-color-red10;
+        }
+
+        &.ng-invalid-required:hover {
+          background-color: $wix-color-white;
+        }
+      }
+
+      input:hover {
+        background: $wix-color-blue50;
+      }
+
+      input:focus {
+        border: 1px solid $wix-color-blue20;
+      }
+    }
+
+    .md-whiteframe-1dp,
+    .md-whiteframe-z1 {
+      box-shadow: none;
+    }
+
+  }
+
+  .md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    box-shadow: 0 0 $wix-font-size-text 0 rgba(0, 0, 0, .14);
+  }
+
+  .md-autocomplete-suggestions li {
+    font-size: $wix-font-size-text;
+    transition: none;
+  }
+
+  md-virtual-repeat-container {
+    border-top: none medium;
+    border-radius: 6px;
+    padding: 0;
+    z-index: 1;
+    font-weight: 300;
+    font-family: $wix-font-family-helvetica-45;
+    font-size: $wix-font-size-text;
+
+    .md-autocomplete-action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      line-height: 33px;
+      background-color: $wix-color-white;
+      border-top: 1px solid $wix-color-dark60;
+
+      div {
+        margin: 0 15px;
+        text-decoration: none;
+        color: $wix-color-blue10;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .md-autocomplete-suggestions {
+      background-color: $wix-color-white;
+
+      li {
+        height: $autocomplete-height;
+        line-height: $autocomplete-height;
+
+        &.selected {
+          background: $wix-color-blue10;
+          color: $wix-color-white;
+        }
+      }
+
+      li:not(.selected):hover {
+        background: $wix-color-blue50;
+      }
+
+    }
+  }
+}
+
+@include _wix-style-md-autocomplete();

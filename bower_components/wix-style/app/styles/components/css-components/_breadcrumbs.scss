@@ -1,0 +1,158 @@
+// Breadcrumbs
+//
+// This is the breadcrumbs section
+//
+// Styleguide 2.2
+//
+
+// Breadcrumbs - Base styles
+//
+// Hover colors for different backgrounds
+//
+// default - White Background
+// is-breadcrumbs-grey - Grey Background
+//
+// markup:
+//<ul class="wix-breadcrumbs {$modifiers}">
+//    <li class="breadcrumb">
+//        <a class="clickable-breadcrumb" ng-href="http://www.wix.com">First Item</a>
+//    </li>
+//    <li class="breadcrumb">
+//        <a class="clickable-breadcrumb" ng-href="http://www.wix.com">Second Item</a>
+//    </li>
+//    <li class="breadcrumb">
+//        <a class="clickable-breadcrumb" ng-href="http://www.wix.com">Third Item</a>
+//    </li>
+//</ul>
+//
+// sg-wrapper:
+// <div class="stylguide-breadcrumbs-{$modifiers}">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.2.1
+//
+
+// Breadcrumbs - Sizes
+//
+// Using <code>is-breadcrumbs-grey</code> class to enlarge the breadcrumbs
+//
+// default - White Background
+// is-breadcrumbs-grey - Grey Background
+//
+// markup:
+//<ul class="wix-breadcrumbs is-breadcrumbs-large {$modifiers}">
+//    <li class="breadcrumb">
+//        <a class="clickable-breadcrumb" ng-href="http://www.wix.com">First Item</a>
+//    </li>
+//    <li class="breadcrumb">
+//        <a class="clickable-breadcrumb" ng-href="http://www.wix.com">Second Item</a>
+//    </li>
+//    <li class="breadcrumb">
+//        <a class="clickable-breadcrumb" ng-href="http://www.wix.com">Third Item</a>
+//    </li>
+//</ul>
+//
+// sg-wrapper:
+// <div class="stylguide-breadcrumbs stylguide-breadcrumbs-{$modifiers}">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.2.2
+//
+
+@mixin wix-style-breadcrumbs() {
+
+  // scss-lint:disable NestingDepth
+
+  //// Colors
+  $background-hover: $wix-color-blue40;
+  $background-on-grey-hover: $wix-color-dark80;
+  $color-arrow: $wix-color-dark50;
+  $color: $wix-color-dark30;
+  $color-current: $wix-color-dark10;
+
+  //// Spaces and padding
+  $spacing: 8px;
+  $padding-horizontal-hover: 10px;
+  $padding-vertical-hover: 6px;
+
+  //// Font attributes
+  $font-size-small: 14px;
+  $font-size-large: 16px;
+  $font-weight: 300;
+
+  //// Others
+  $border-radius-hover: 20px;
+
+  .wix-breadcrumbs {
+    font-family: $wix-font-family-helvetica-45;
+    font-size: $font-size-small;
+    font-weight: $font-weight;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
+    .breadcrumb {
+      @extend .wix-style-svg-font-icons;
+      @extend .wix-style-svg-font-icons-arrow-right;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:before {
+        font-size: $font-size-small;
+        color: $color-arrow;
+      }
+
+      &:first-child {
+
+        &:before {
+          content: '';
+        }
+      }
+
+      &:last-child {
+
+        .clickable-breadcrumb {
+          color: $color-current;
+        }
+      }
+    }
+
+    .clickable-breadcrumb {
+      margin-left: $spacing;
+      margin-right: $spacing;
+      color: $color;
+      padding-top: $padding-vertical-hover;
+      padding-right: $padding-horizontal-hover;
+      padding-bottom: $padding-vertical-hover;
+      padding-left: $padding-horizontal-hover;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $background-hover;
+        border-radius: $border-radius-hover;
+      }
+    }
+
+    &.is-breadcrumbs-grey {
+
+      .clickable-breadcrumb {
+
+        &:hover {
+          background-color: $background-on-grey-hover;
+        }
+      }
+    }
+
+    &.is-breadcrumbs-large {
+      font-size: $font-size-large;
+    }
+
+  }
+
+  // scss-lint:enable NestingDepth
+}
+
+@include wix-style-breadcrumbs();

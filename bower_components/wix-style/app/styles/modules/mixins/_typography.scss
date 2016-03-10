@@ -1,0 +1,47 @@
+// Typography mixins are public and documented inside css-components/typography
+
+@mixin wix-typography-main-header {
+  font-weight: normal;
+  font-size: $wix-font-size-main-header;
+  font-family: $wix-font-family-helvetica-25;
+}
+
+@mixin wix-typography-h1 {
+  font-weight: normal;
+  font-size: $wix-font-size-h1;
+  font-family: $wix-font-family-helvetica-35;
+}
+
+@mixin wix-typography-h2 {
+  font-weight: normal;
+  font-size: $wix-font-size-h2;
+  font-family: $wix-font-family-helvetica-35;
+}
+
+@mixin wix-typography-h3 {
+  font-weight: normal;
+  font-size: $wix-font-size-h3;
+  font-family: $wix-font-family-helvetica-35;
+}
+
+@mixin wix-typography-body {
+  font-weight: normal;
+  font-size: $wix-font-size-text;
+  font-family: $wix-font-family-helvetica-45;
+}
+
+@mixin wix-typography-body-small {
+  font-weight: normal;
+  font-size: $wix-font-size-text-small;
+  font-family: $wix-font-family-helvetica-55;
+}
+
+@mixin wix-typography-input {
+  font-weight: normal;
+  font-size: $wix-font-size-text;
+  font-family: $wix-font-family-helvetica-55;
+}
+
+@mixin wix-typography-input-small {
+  @include wix-typography-body-small();
+}

@@ -1,0 +1,388 @@
+// Modal
+//
+// Modal
+// <div class="warning-message">This is component is DEPRECATED! Use instead wix-style with ng-material integration for $mdDialog, <a href="../#/test-component-page/angular-material-documentation#md-dialog">Go to wix-style-material docs</a></div>
+// <div style="font-size: 12px">If you still wants to view old modal docs (BAD IDEA!) you can find it <a href="#/section/999.2">here</a>.</div>
+//
+// Styleguide 3.4
+
+// Alert Modal
+//
+// This is modal service that will help you open close and mange your modal window <br>
+//
+// <span style="color: red;">Important!</span> make sure to sanitize text when using html content in .content section
+//
+// markup:
+// <execute-script on-click-callback="openWixModalAlert">
+//  var wixModal = angular.element(document.body).injector().get('wixModal');
+//  var alert = wixModal.alert()
+//                      .title('Title of modal')
+//                      .content('I am same message so I need to be quit long')
+//                      .confirm('Agree')
+//                      .iconUrl('/images/DO_NOT_USE.jpg')
+//                      .cancel('Next time');
+//  wixModal.open(alert).then(function (result) {
+//    console.log('resolved', result);
+//  }).catch(function (reason) {
+//    console.log('catch', reason);
+//  });
+// </execute-script>
+//
+// Styleguide 999.2.1
+
+// Modal Danger
+//
+// if confirm button or cancel text will not supply they will not be display <br>
+//
+// markup:
+// <execute-script on-click-callback="openWixModalDanger">
+//  var wixModal = angular.element(document.body).injector().get('wixModal');
+//  var alert = wixModal.alert()
+//                      .title('Title of modal')
+//                      .content('I am same message so I need to be quit long')
+//                      .style('DANGER')
+//                      .confirm('Agree');
+//  wixModal.open(alert).then(function (result) {
+//    console.log('resolved', result);
+//  }).catch(function (reason) {
+//    console.log('catch', reason);
+//  });
+// </execute-script>
+//
+// Styleguide 999.2.2
+
+// Modal premium
+//
+// To open premium modal<br>
+//  You can customize the button and give classes for each of the button confirm and cancel
+//  if label for one of the button are not supply that button will be hidden
+//
+// markup:
+// <execute-script on-click-callback="openWixModalPremium">
+//  var wixModal = angular.element(document.body).injector().get('wixModal');
+//  var premiumModal = wixModal.premium();
+//  premiumModal.title('Set Up Payments');
+//  premiumModal.subtitle('I am sub');
+//  premiumModal.iconUrl('/images/modal-v-icon.png');
+//  premiumModal.content('You havent set up any payment methods for your customers. Choose how you want to get paid in your Store Manager.');
+//  premiumModal.confirm('Get My FREE Month', 'wix-button-premium');
+//  premiumModal.cancel('Next Time', 'wix-button-premium is-button-outline');
+//  wixModal.open(premiumModal).then(function (result) {
+//    console.log('resolved', result);
+//  }).catch(function (reason) {
+//    console.log('catch', reason);
+//  });
+// </execute-script>
+//
+// Styleguide 999.2.4
+
+// Modal custom
+//
+// To a custom modal you need to pass thous parameter
+//  You can customize the button and give classes for each of the button confirm and cancel
+//  if label for one of the button are not supply that button will be hidden
+//
+// markup:
+// <execute-script on-click-callback="openWixModalCustom">
+//  var wixModal = angular.element(document.body).injector().get('wixModal');
+//  var $rootScope = angular.element(document.body).injector().get('$rootScope');
+//  var options = {
+//    scope: $rootScope.$new(),
+//    templateUrl: 'views/components/modals/wix-modal-custom-example.html',
+//    controller: 'WixModalCustomExample',
+//    controllerAs: 'myCustomController',
+//    modalClass: 'another-custom-class',
+//    width: 400
+//  };
+//  wixModal.open(options).then(function (result) {
+//    console.log('resolved', result);
+//  })
+// </execute-script>
+// <style>
+//  .another-custom-class {
+//   font-size: 40px;
+//   background: #fff;
+//  }
+//  .wix-modal-custom-example-class > div {
+//    margin-bottom: 30px;
+//   }
+// </style>
+//
+// Styleguide 999.2.5
+
+@mixin _wix-general-modals() {
+
+  $wix-modal-disable-color: rgba($wix-color-dark10, .87);
+  $wix-modal-margin: 30px;
+
+  // scss-lint:disable QualifyingElement
+  body.wix-modal-body-open {
+    overflow: hidden;
+  }
+  // scss-lint:enable QualifyingElement
+
+  .wix-modal {
+    min-width: 240px;
+    width: 564px;
+    display: flex;
+    overflow: visible;
+
+    // container for all modals custom modal also
+    .wix-modal--window {
+      z-index: $_wix-style-z-index-modal+10;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 14px 0 rgba(29, 45, 60, .3);
+      transform: translateY(-50%);
+      margin: 0 auto;
+    }
+
+    .wix-modal-window-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+    }
+
+    // disable the background
+    &.wix-modal--container {
+      position: fixed;
+      background-color: $wix-modal-disable-color;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: $_wix-style-z-index-modal;
+    }
+
+    .wix-modal--header {
+      display: flex;
+      justify-content: space-between;
+      height: 60px;
+      padding: 0 $wix-modal-margin;
+      flex-shrink: 0;
+    }
+
+    .wix-modal--footer {
+      padding: ($wix-modal-margin/6) $wix-modal-margin ($wix-modal-margin/1.5);
+      background-color: $wix-color-white;
+      flex-shrink: 0;
+
+      &:after {
+        content: '';
+        clear: both;
+        display: block;
+      }
+
+      .modal-button {
+        float: right;
+
+        + .modal-button {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .wix-modal--body {
+      display: flex;
+      padding: $wix-modal-margin $wix-modal-margin $wix-modal-margin/3;
+      background-color: $wix-color-white;
+    }
+  }
+}
+
+@mixin _alert-types($header-color, $close-button-color, $close-button-color-hover) {
+  .wix-modal--header {
+    background-color: $header-color;
+  }
+
+  .wix-modal--close-button {
+    @extend %modal-close-button;
+    background: $close-button-color;
+
+    &:hover {
+      background: $close-button-color-hover;
+    }
+  }
+}
+
+%modal-window {
+  overflow: hidden;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+%modal-close-button {
+  $close-button-dimension: 25px;
+
+  align-self: center;
+  text-align: center;
+  width: $close-button-dimension;
+  height: $close-button-dimension;
+  border-radius: 50%;
+  border: 0;
+  font-size: 9px;
+  cursor: pointer;
+  padding: 0;
+  color: $wix-color-white;
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  outline: none;
+
+  &:before {
+    position: relative;
+    top: -1px;
+  }
+}
+
+@mixin _wix-modal-premium() {
+  $wix-modal-text-color: $wix-color-dark20;
+
+  $wix-modal-alert-color: $wix-color-blue10;
+  $wix-modal-close-alert-color: #0081ce;
+  $wix-modal-close-alert-color-hover: #004881;
+
+  .wix-modal--premium-window {
+    @extend %modal-window;
+    min-height: 400px;
+  }
+
+  .wix-modal--premium-header {
+    display: flex;
+    color: $wix-color-white;
+    background-color: $wix-modal-alert-color;
+    flex-direction: column;
+    padding-top: 45px;
+    min-height: 160px;
+  }
+
+  .wix-modal--premium-title {
+    align-self: center;
+    font: 30px $wix-font-family-helvetica-55;
+  }
+
+  .wix-modal--premium-sub-title {
+    margin-top: 22px;
+    margin-bottom: 30px;
+    align-self: center;
+    font: 18px $wix-font-family-helvetica-45;
+  }
+
+  .wix-modal--premium-cancel-button {
+    margin-top: 17px;
+  }
+
+  .wix-modal--premium-modal-body {
+    display: flex;
+    flex-direction: column;
+    background-color: $wix-color-white;
+  }
+
+  .wix-modal--premium-content {
+    color: $wix-modal-text-color;
+    text-align: center;
+    align-self: center;
+    font: $wix-font-size-text $wix-font-family-helvetica-45;
+    padding: 5px;
+    overflow-y: auto;
+    min-height: 20px;
+  }
+
+  .wix-modal--premium-icon {
+    height: 129px;
+    align-self: center;
+    margin-top: -80px;
+
+  }
+
+  .wix-modal--premium-close-button {
+    @extend %modal-close-button;
+    align-self: flex-end;
+    background: $wix-modal-close-alert-color;
+
+    &:before {
+      padding-bottom: 1px;
+    }
+
+    &:hover {
+      background: $wix-modal-close-alert-color-hover;
+    }
+  }
+}
+
+@mixin _wix-modal-alert() {
+  $wix-modal-text-color: $wix-color-dark20;
+  $wix-modal-margin: 30px;
+
+  .wix-modal--premium-buttons {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    align-self: center;
+    padding: 15px 10px;
+    min-height: 80px;
+  }
+
+  .wix-modal--message-window {
+    @extend %modal-window;
+  }
+
+  .wix-modal--title {
+    align-self: center;
+    color: $wix-color-white;
+    font: $wix-font-size-h3 $wix-font-family-helvetica-45;
+  }
+
+  .wix-modal--icon-wrapper {
+    min-width: 126px;
+    max-width: 126px;
+    margin-right: $wix-modal-margin;
+    text-align: center;
+  }
+
+  .wix-modal--icon {
+    max-width: 100%;
+  }
+
+  .wix-modal--content {
+    font: $wix-font-size-text $wix-font-family-helvetica-55;
+    color: $wix-modal-text-color;
+    line-height: 24px;
+    overflow-y: scroll;
+  }
+
+  $wix-modal-alert-color: $wix-color-blue10;
+  $wix-modal-close-alert-color: #0081ce;
+  $wix-modal-close-alert-color-hover: #004881;
+
+  .wix-modal--alert {
+    @include _alert-types($wix-modal-alert-color, $wix-modal-close-alert-color, $wix-modal-close-alert-color-hover)
+  }
+
+  $wix-modal-danger-color: #ec4d4d;
+  $wix-modal-close-danger-color: #c3504d;
+  $wix-modal-close-danger-color-hover: #942b28;
+
+  .wix-modal--danger {
+    @include _alert-types($wix-modal-danger-color, $wix-modal-close-danger-color, $wix-modal-close-danger-color-hover);
+  }
+}
+
+@mixin wix-modal() {
+  @include _wix-general-modals();
+  .wix-modal {
+    @include _wix-modal-alert();
+    @include _wix-modal-premium();
+  }
+}
+
+@include wix-modal();
+
+md-dialog {
+  border-radius: 8px;
+  overflow: visible;
+  background-color: transparent;
+}

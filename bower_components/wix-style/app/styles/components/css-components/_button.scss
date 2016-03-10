@@ -1,0 +1,298 @@
+// Buttons
+//
+// This is the buttons section
+//
+// markup:
+// <button type="button" class="wix-button">Button</button>
+//
+// Styleguide 2.1
+//
+
+// Buttons - Base styles & states
+//
+// .wix-button - Normal button
+// .wix-button:hover - Hover state
+// .wix-button:active - Click state
+// .wix-button.disabled - Disabled button. If you use `<button>` element, that is acceptable to add disabled attribute instead.
+//
+// markup:
+// <button type="button" class="{$modifiers}">Button</button>
+// <a href="#" class="{$modifiers}">Link</a>
+//
+// Styleguide 2.1.1
+//
+
+// Buttons - Skins
+//
+// .wix-button - Normal button
+// .wix-button-premium - Premium button
+// .wix-button-danger - danger button
+// .wix-button-market - market button
+//
+// markup:
+// <button type="button" class="{$modifiers}">Button</button>
+// <a href="#" class="{$modifiers}">Link</a>
+//
+// Styleguide 2.1.2
+//
+
+// Buttons - Sizing
+//
+// * - Regular size button
+// .is-button-large - Large size button
+// .is-button-small - Small size button
+//
+// markup:
+// <button type="button" class="wix-button {$modifiers}">Button</button>
+// <button type="button" class="wix-button-premium {$modifiers}">Button</button>
+// <button type="button" class="wix-button-danger {$modifiers}">Button</button>
+// <button type="button" class="wix-button-market {$modifiers}">Button</button>
+//
+// Styleguide 2.1.3
+//
+
+// Buttons - Outline
+//
+// .is-button-outline - Outline button
+// .is-button-outline:hover - Outline button, hover state
+// .is-button-outline:active - Outline button, click state
+// .is-button-outline.disabled - Outline button with disabled button. If you use `<button>` element, that is acceptable to add disabled attribute instead.
+//
+// markup:
+// <button type="button" class="wix-button {$modifiers}">Button</button>
+// <button type="button" class="wix-button-premium {$modifiers}">Button</button>
+// <button type="button" class="wix-button-danger {$modifiers}">Button</button>
+// <button type="button" class="wix-button-market {$modifiers}">Button</button>
+//
+// Styleguide 2.1.4
+//
+
+// Buttons - Width behavior demonstrations
+//
+// .example-full-width - Full width
+// .example-overflow - Overflow
+//
+// markup:
+// <button type="button" class="wix-button {$modifiers}">Button with long text is here</button>
+// <br><br>
+// <a href="#" class="wix-button {$modifiers}">Link button with long text is here</a>
+//
+// sg-wrapper:
+// <div class="styleguide-buttons-wrapper">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.5
+//
+
+@mixin _output-properties-list($list: ()) {
+  @each $property, $value in $list {
+    // styleguide:ignore:start
+    #{$property}: $value;
+    // styleguide:ignore:end
+  }
+}
+
+@mixin _wix-style-button-not-hover {
+  &:not(:hover):not(.pseudo-class-hover) {
+    @content;
+  }
+}
+
+@mixin _wix-style-button-not-disabled {
+  &:not(.disabled):not([disabled]) {
+    @content;
+  }
+}
+
+@mixin _wix-style-button-not-active {
+  &:not(:active):not(.pseudo-class-active) {
+    @content;
+  }
+}
+
+@mixin wix-style-button {
+  $classname: '.wix-button';
+  $classname-outline: '.is-button-outline';
+
+  $color: $wix-color-white;
+  $color-disabled: $wix-color-gray10;
+  $background-outline: transparent;
+
+  $font-family: $wix-font-family-helvetica-55;
+  $font-family-small: $wix-font-family-helvetica-55;
+  $font-size: $wix-font-size-text;
+  $font-size-small: $wix-font-size-text-small;
+
+  $padding: 9px 24px;
+  $padding-large: 12px 24px;
+  $padding-small: 6px 18px 7px 18px;
+
+  $border-width-outline: 1px;
+
+  $types: (
+    "": (
+      "": (
+        background: $wix-color-blue10
+      ),
+      ":hover": (
+        background: $wix-color-blue20
+      ),
+      ":active": (
+        background: $wix-color-blue10
+      )
+    ),
+    premium: (
+      "": (
+        background: $wix-color-purple10
+      ),
+      ":hover": (
+        background: $wix-color-purple20
+      ),
+      ":active": (
+        background: $wix-color-purple10
+      )
+    ),
+    danger: (
+      "": (
+        background: $wix-color-red10
+      ),
+      ":hover": (
+        background: $wix-color-red20
+      ),
+      ":active": (
+        background: $wix-color-red10
+      )
+    ),
+    market: (
+      "": (
+        background: $wix-color-orange10
+      ),
+      ":hover": (
+        background: $wix-color-orange20
+      ),
+      ":active": (
+        background: $wix-color-orange10
+      )
+    )
+  );
+
+  $sizes: (
+    large: (
+      padding: $padding-large
+    ),
+    small: (
+      padding: $padding-small,
+      font-size: $font-size-small,
+      font-family: $font-family-small
+    )
+  );
+
+  %wix-button-base {
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 999px; // Why? @see http://lea.verou.me/2010/10/the-curious-case-of-border-radius50/
+    border: none medium;
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    padding: $padding;
+    cursor: pointer;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+
+    &[disabled],
+    &.disabled {
+      &,
+      &:hover,
+      &:active {
+        background: $color-disabled;
+      }
+    }
+
+    &#{$classname-outline} {
+      &,
+      &[disabled],
+      &.disabled {
+        box-shadow: inset 0 0 0 $border-width-outline currentColor; // border enlarges the button, shadow doesn't
+        background: $background-outline;
+      }
+
+      &:hover,
+      &:active {
+        @include _wix-style-button-not-disabled() {
+          box-shadow: none;
+        }
+      }
+
+      &[disabled],
+      &.disabled {
+        color: $color-disabled;
+      }
+    }
+  }
+
+  a%wix-button-base {
+    display: inline-block;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+      color: $color;
+    }
+  }
+
+  // Print button types
+  @each $type, $states in $types {
+    $selector: ($classname);
+
+    @if ($type != '') {
+      $selector: $selector + '-' + $type;
+    }
+
+    #{simple-selectors($selector)} {
+      @extend %wix-button-base;
+
+      @each $state, $properties-list in $states {
+        &#{$state} {
+          @include _output-properties-list($properties-list);
+        }
+
+        @if ($state == '') {
+          &#{$classname-outline} {
+            @include _wix-style-button-not-hover() {
+              @include _wix-style-button-not-disabled() {
+                @include _wix-style-button-not-active() {
+                  color: map-get($properties-list, background);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Print Sizes
+  @each $size, $properties-list in $sizes {
+    $selector: '.is-button-' + $size;
+
+    #{simple-selectors($selector)} {
+      @include _output-properties-list($properties-list);
+    }
+  }
+}
+
+@include wix-style-button();
+
+
+
+
+
+
+
+

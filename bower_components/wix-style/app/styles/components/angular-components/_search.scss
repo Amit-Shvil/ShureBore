@@ -1,0 +1,215 @@
+// Wix Search
+//
+// <div class="under-constructions"></div>
+// Supports ng-model & placeholder attributes, supports events <b>'on-search'</b> and <b>'on-clear'</b> and has optional animation feature
+//
+// default - Default state
+// :hover - Hover state
+// .focus - Focus state - For documentation purposes only - don't use this class, you get it by default when you focus the input
+//
+// markup:
+// <div ng-init="msg = 'Hi! i\'m a search box, add text to me, and then click enter or click the X button to see what happens';">{{msg}}</div>
+// <wix-search ng-model="searchTerm1"
+//             placeholder="Placeholder"
+//             on-search="msg='searching ' + searchTerm1 + ' ...'"
+//             on-clear="msg='You\'ve just clicked on the X button'"
+//             ng-change="onChangeMessage = searchTerm1 === '' ? 'You have just cleared the search' : 'Your search value is: ' + searchTerm1"
+//             class="{$modifiers}"></wix-search>
+// <div ng-init="onChangeMessage = ''">{{onChangeMessage}}</div>
+//
+// sg-wrapper:
+// <div class="styleguide-search-wrapper">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.11
+//
+
+// Wix Search - Skin Types
+//
+// gray - On gray background
+//
+// transparent - Bottom border only, for gray background
+//
+// default - Default state
+// :hover - Hover state
+// .focus - Focus state
+//
+// markup:
+// <wix-search ng-model="searchTerm2" placeholder="Placeholder" skin="gray" class="{$modifiers}"></wix-search>
+// <wix-search ng-model="searchTerm3" placeholder="Placeholder" skin="transparent" class="{$modifiers}"></wix-search>
+//
+// sg-wrapper:
+// <div class="styleguide-search-wrapper gray">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.11.1
+//
+
+// Wix Search - animated
+//
+// Any initial width you set will grow by 1.4 on focus
+//
+// markup:
+// <wix-search ng-model="searchTerm4" placeholder="Placeholder" skin="transparent" class="animated" width="500px"></wix-search>
+//
+// sg-wrapper:
+// <div class="styleguide-search-wrapper gray">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.11.2
+//
+
+// scss-lint:disable ImportantRule
+@mixin _wix-search-colors($border-color, $border-color-hover, $border-color-active, $background-color, $background-color-hover, $background-color-active, $placeholder-color-focus) {
+
+  $input-padding-left: 27px;
+  $input-padding-right: 25px;
+  $blue3: #7fccf7;
+
+
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 0 0 0 10px;
+  min-width: 210px;
+  height: 34px;
+
+  &:hover {
+    border-color: $border-color-hover !important;
+    background-color: $background-color-hover;
+
+    input {
+      border-color: $border-color-hover !important;
+    }
+  }
+
+  &.focus {
+    border-color: $border-color-active !important;
+    background-color: $background-color-active;
+
+    input {
+      @extend input:focus;
+      border-color: $border-color-active !important;
+    }
+  }
+
+  input {
+    @include _placeholder($wix-color-dark10);
+    display: inline-block;
+    border: 0 !important;
+    border-radius: 0 !important;
+    outline: none;
+    padding: 0 $input-padding-right 0 5px !important;
+    width: calc(100% - #{$input-padding-right});
+    font-size: 16px;
+    font-family: $wix-font-family-helvetica-55;
+    height: 100%;
+    background-color: transparent !important;
+
+    &:focus {
+      @include _placeholder($placeholder-color-focus);
+    }
+  }
+
+  .wix-search-icon {
+    display: inline-block;
+    color: $wix-color-blue10;
+  }
+
+  .wix-search-wrapper {
+    position: relative;
+    display: inline-block;
+    width: calc(100% - #{$input-padding-left});
+    height: 100%;
+  }
+
+  .wix-search-clear {
+    display: inline-block;
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    bottom: calc((100% - 19px) / 2);
+    padding: 5px;
+    font-size: 7px;
+    color: $blue3;
+    cursor: pointer;
+
+    &.visible {
+      visibility: visible;
+    }
+
+    &:hover {
+      color: $wix-color-blue10;
+    }
+  }
+}
+
+@mixin _placeholder($color) {
+  // scss-lint:disable VendorPrefix
+  &::-webkit-input-placeholder {
+    color: $color;
+    font-style: normal !important;
+  }
+
+  &:-moz-placeholder {
+    color: $color;
+    font-style: normal !important;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+    font-style: normal !important;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+    font-style: normal !important;
+  }
+  // scss-lint:enable VendorPrefix
+}
+
+@mixin _wix-search {
+
+  $blue3: #7fccf7;
+  $blue4: #c6e2f7;
+  $gray1: #bec5cb;
+
+  .wix-search {
+    @include _wix-search-colors($blue4, $blue4, $wix-color-blue20, $wix-color-dark80, $wix-color-blue50, $wix-color-dark80, $wix-color-dark50);
+  }
+
+  .wix-search[skin="gray"] {
+    @include _wix-search-colors(transparent, $blue4, $wix-color-blue20, transparent, $blue4, $wix-color-dark80, $wix-color-dark50);
+  }
+
+  .wix-search[skin="transparent"] {
+
+    @include _wix-search-colors($gray1, $blue3, $wix-color-blue10, transparent, transparent, transparent, $wix-color-dark10);
+    border: 0;
+    height: 24px;
+    background-color: transparent !important;
+
+    .wix-search-clear {
+      bottom: 3px;
+    }
+
+    input {
+      border-bottom: 1px solid $gray1 !important;
+
+      &:focus:first-line {
+        background-color: $blue4;
+      }
+    }
+  }
+
+  .animated.wix-search {
+    transition: width .3s ease-out;
+  }
+
+}
+
+@include _wix-search();
+// scss-lint:enable ImportantRule

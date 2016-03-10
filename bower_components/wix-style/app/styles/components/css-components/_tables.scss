@@ -1,0 +1,259 @@
+// Tables
+//
+// <div class="under-constructions"></div>
+// This is the tables section
+//
+// markup:
+// <table class="wix-table is-table-border">
+//  <thead>
+//    <tr>
+//      <th>First Title</th>
+//      <th>Second Title</th>
+//      <th>Third Title</th>
+//    </tr>
+//  </thead>
+//  <tbody>
+//    <tr>
+//      <td>Some content</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//    <tr class="is-selected">
+//      <td>I have 'selected' class</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//  <tbody>
+// </table>
+//
+// Styleguide 2.6
+//
+
+// Tables with customized width
+//
+// markup:
+// <table class="wix-table" style="width: 750px;"">
+//  <thead>
+//    <tr>
+//      <th width="100px">100px Title</th>
+//      <th style="width: 30%;">30% Width Ttle</th>
+//      <th>Third Title</th>
+//    </tr>
+//  </thead>
+//  <tbody>
+//    <tr>
+//      <td>Some content</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//  </tbody>
+// </table>
+//
+// sg-wrapper:
+// <div class="styleguide-tables-wrapper">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.6.1
+//
+
+// Tables wix long text
+//
+// markup:
+// <table class="wix-table">
+//  <thead>
+//    <tr>
+//      <th>First Title</th>
+//      <th>Second Title</th>
+//      <th>Third Title</th>
+//    </tr>
+//  </thead>
+//  <tbody>
+//    <tr>
+//      <td>Some content</td>
+//      <td>This content will be longer to show flexibilty</td>
+//      <td>This content will be extremely long and duplicated to see all is working okay This content will be extremely long and duplicated to see all is working okay This content will be extremely long and duplicated to see all is working okay This content will be extremely long and duplicated to see all is working okay This content will be extremely long and duplicated to see all is working okay This content will be extremely long and duplicated to see all is working okay This content will be extremely long and duplicated to see all is working okay This content will be extremely long and duplicated to see all is working okay </td>
+//    </tr>
+//  </tbody>
+// </table>
+//
+// sg-wrapper:
+// <div class="styleguide-tables-wrapper">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.6.2
+//
+
+// Table with styled borders
+//
+// markup:
+// <table class="wix-table is-table-border">
+//  <thead>
+//    <tr>
+//      <th>First Title</th>
+//      <th>Second Title</th>
+//      <th>Third Title</th>
+//    </tr>
+//  </thead>
+//  <tbody>
+//    <tr>
+//      <td>Some content</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//    <tr>
+//      <td>Some content</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//    <tr class="is-selected">
+//      <td>I have 'selected' class</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//    <tr>
+//      <td>Some content</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//    <tr class="is-selected">
+//      <td>I have 'selected' class</td>
+//      <td>Another content</td>
+//      <td>I'm a content too!</td>
+//    </tr>
+//  <tbody>
+// </table>
+//
+// sg-wrapper:
+// <div class="styleguide-tables-wrapper-white">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.6.3
+//
+
+@mixin _wix-style-table {
+
+  $is-selected: $wix-color-blue40;
+  $is-hover: $wix-color-blue60;
+  $row-height: 72px;
+  $header-height: 60px;
+  $shadow: 0 2px 0 0 rgba(228, 228, 228, .59);
+  $perimeter-padding: 24px;
+  $column-padding-first: 24px;
+  $column-padding-last: 24px;
+  $column-padding: 56px;
+  $header-color: $wix-color-dark40;
+  $font-color: $wix-color-dark20;
+  $border-radius: 8px;
+  $border-radius-td: $border-radius - 1px;
+  $header-buttom-border: $wix-color-dark60;
+  $font-line-height: $wix-font-size-text * 1.2;
+  $cell-inner-text-padding: ($row-height - $font-line-height) / 2;
+
+  $white-table-border: $wix-color-blue30;
+  $white-header-height: 50px;
+  $white-row-height: 60px;
+  $white-cell-inner-text-padding: ($white-row-height - $font-line-height) / 2;
+
+  .wix-table {
+    @include wix-typography-body();
+    border-radius: $border-radius;
+    color: $font-color;
+    background: $wix-color-white;
+    box-sizing: border-box;
+    border-spacing: 0;
+    width: 100%;
+    box-shadow: $shadow;
+    overflow-x: hidden;
+
+    thead th {
+      @include wix-typography-body();
+      box-sizing: border-box;
+      height: $header-height;
+      color: $header-color;
+      text-align: left;
+      border-bottom: 1px solid $header-buttom-border;
+    }
+
+    tbody > tr {
+      box-sizing: border-box;
+      height: $row-height;
+
+      &:hover:not(.is-selected) td {
+        background-color: $is-hover;
+      }
+
+      &.is-selected td {
+        background-color: $is-selected;
+      }
+    }
+
+    tbody > tr:last-child {
+      border-radius: 0 $border-radius;
+
+      td {
+        border-bottom: 0;
+      }
+
+      td:last-child {
+        border-radius: 0 0 $border-radius-td;
+      }
+
+      td:first-child {
+        border-radius: 0 0 0 $border-radius-td;
+      }
+    }
+
+    tbody > tr:hover {
+      cursor: pointer;
+    }
+
+    td {
+      padding-top: $cell-inner-text-padding;
+      padding-bottom: $cell-inner-text-padding;
+      padding-right: 56px;
+      border-bottom: 1px solid $wix-color-dark70;
+      vertical-align: top;
+
+      &:first-child {
+        padding-left: $perimeter-padding;
+      }
+    }
+
+    tr td,
+    th {
+      &:last-child {
+        padding-right: $perimeter-padding;
+      }
+
+      &:first-child {
+        padding-left: $perimeter-padding;
+      }
+    }
+
+    &.is-table-border {
+
+      border: 1px solid $white-table-border;
+      box-shadow: none;
+
+      thead th {
+        height: $white-header-height;
+        border-bottom: 1px solid $white-table-border;
+      }
+
+      tbody > tr {
+        height: $white-row-height;
+      }
+
+      td {
+        padding-top: $white-cell-inner-text-padding;
+        padding-bottom: $white-cell-inner-text-padding;
+        border-bottom: 1px solid $wix-color-blue50;
+      }
+    }
+  }
+}
+
+@include _wix-style-table();

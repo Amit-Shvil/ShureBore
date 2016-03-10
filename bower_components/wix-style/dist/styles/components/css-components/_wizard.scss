@@ -1,0 +1,164 @@
+// Wizard
+//
+// <div class="under-constructions"></div>
+// This is the wizard section
+//
+// Styleguide 2.5
+//
+
+// Wizard - Base styles
+//
+// subtitle
+//
+// markup:
+//<div parameter-provider="items">
+//    [{
+//      "name": "First Step"
+//     },{
+//      "name": "Second Step "
+//     },{
+//      "name": "Third Step"
+//     }]
+//</div>
+//<wix-wizard steps="items">
+//</wix-wizard>
+//
+// Styleguide 999.3.1
+//
+
+@mixin _wix-style-wizard() {
+  @include wix-style-breadcrumbs();
+
+  //// Colors
+  $color-complete: $wix-color-dark40;
+  $color-active: $wix-color-blue10;
+  $color-hover: $wix-color-dark40;
+  $color-default: $wix-color-dark40;
+  $color-disabled: $wix-color-dark50;
+  $color-next: $wix-color-dark80;
+  $color-active-number: $wix-color-white;
+  $color-complete: $wix-color-green20;
+  $color-default-circle: #92c6eb; // TODO wrote it in the ticket
+  $color-arrow: $wix-color-dark50;
+
+  $background-color-default: $wix-color-blue50;
+  $background-color-active: $wix-color-blue10;
+  $background-color-default-hover: $wix-color-blue40;
+  $background-color-frame: $wix-color-white;
+
+  //// Font attributes
+  $font-size-small: $wix-font-size-text-small;
+
+  //// Spaces and padding
+  $spacing: 35px;
+  $spacing-between-icon-and-text: 9px;
+  $spacing-to-next-button: 181px - $spacing; // TODO is this better than removing the spcing from the last child?
+  $spacing-from-frame-to-first-circle: 25px;
+  $border-radius-frame: 8px;
+
+  // Heights etc
+  $circle-height: 30px;
+  $circle-width: 30px;
+
+  wix-wizard {
+    box-shadow: 0 2px 0 0 rgba(228, 228, 228, .59);
+    background-color: $background-color-frame;
+    border-radius: $border-radius-frame;
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+  }
+
+  .wizard-steps {
+    display: flex;
+  }
+
+  .step {
+    display: flex;
+
+    &:before {
+      @extend .wix-style-svg-font-icons;
+      @extend .wix-style-svg-font-icons-arrow-right;
+      color: $color-arrow;
+      align-self: center;
+    }
+
+    &:first-child {
+
+      &:before {
+        content: '';
+      }
+    }
+  }
+
+  .step-status {
+    font-family: $wix-font-family-helvetica-35;
+    font-size: $font-size-small;
+    margin-right: $spacing-between-icon-and-text;
+    margin-left: $spacing;
+    width: $circle-width;
+    height: $circle-height;
+    background-color: $background-color-default;
+    color: $color-default-circle;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: $background-color-default-hover;
+    }
+
+    &.complete {
+      border: $color-complete solid 1px;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $color-complete;
+      }
+    }
+
+    &.active {
+      background-color: $background-color-active;
+      color: $color-active-number;
+
+      // TODO Igal, is this ok? Instead of using another class
+      + a {
+        color: $color-active;
+      }
+    }
+
+    &.disabled {
+      border: $color-disabled solid 1px;
+      background-color: transparent;
+
+      // TODO Igal, is this ok? Instead of using another class
+      + a {
+        color: $color-disabled;
+      }
+    }
+  }
+
+  .step-name {
+    font-family: $wix-font-family-helvetica-35;
+    font-size: $font-size-small;
+    margin-right: $spacing;
+    color: $color-default;
+    align-self: center;
+
+    &.active {
+      color: $color-active;
+    }
+
+    &disabled {
+      color: $color-disabled;
+    }
+  }
+
+  .next-button {
+    margin-left: $spacing-to-next-button;
+    color: $color-next;
+  }
+}
+
+@include _wix-style-wizard();

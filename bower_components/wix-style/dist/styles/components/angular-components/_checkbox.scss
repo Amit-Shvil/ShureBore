@@ -1,0 +1,172 @@
+// Checkbox
+//
+// This is the Checkbox section
+//
+// Styleguide 3.7
+
+// With background color:
+//
+// markup:
+// <div ng-init="var1 = false" style="margin-bottom: 12px">
+// <wix-checkbox ng-model="var1"></wix-checkbox>
+// <span>Value: {{var1}}</span>
+// </div>
+// <div ng-init="var2 = true">
+// <wix-checkbox ng-model="var2"></wix-checkbox>
+// <span>Value: {{var2}}</span>
+// </div>
+//
+// Styleguide 3.7.1
+//
+
+// Without background color (class="white"):
+//
+// markup:
+// <div ng-init="var3 = false;" style="margin-bottom: 12px">
+// <wix-checkbox ng-model="var3" class="white"></wix-checkbox>
+// Value: {{var3}}
+// </div>
+// <div ng-init="var4 = true;">
+// <wix-checkbox ng-model="var4" class="white"></wix-checkbox>
+// Value: {{var4}}
+// </div>
+//
+// Styleguide 3.7.2
+//
+
+// Disabled (ng-disabled="true"):
+//
+// markup:
+// <div ng-init="var5 = true; shouldBeDisabled = true;" style="margin-bottom: 12px">
+// <wix-checkbox ng-model="var5" ng-disabled="shouldBeDisabled"></wix-checkbox>
+// Value: {{var5}}
+// Disabled: {{shouldBeDisabled}}
+// </div>
+// <div ng-init="var6 = false; shouldBeDisabled = true;">
+// <wix-checkbox ng-model="var5" ng-disabled="shouldBeDisabled"></wix-checkbox>
+// Value: {{var6}}
+// Disabled: {{shouldBeDisabled}}
+// </div>
+//
+// Styleguide 3.7.3
+//
+
+@mixin wix-checkbox {
+  //Colors
+  $checkbox-color-white: $wix-color-dark80;
+  $checkbox-border-color: #6eb7fd;
+  $checkbox-color: #fcfcfc;
+  $checkbox-hover-color: #e6f5fe;
+  $checkbox-emphasis-color: #3899eb;
+
+  $checkbox-no-background-border: #c6e2f7;
+  $checkbox-no-background-color: #c1e4fe;
+
+  $checkbox-disabled-color: #cedae4;
+  $checkbox-disabled-border-color: #cedae4;
+  $checkbox-disabled-background-color: #eff2f5;
+
+  $checkbox-inner-side-length: 14px;
+
+  .visuallyhidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+
+  wix-checkbox {
+
+    label {
+      // margin: 12px;
+      height: 16px;
+      width: 16px;
+      display: inline-block;
+      border: none medium;
+      vertical-align: middle;
+      user-select: none;
+    }
+
+    .wix-checkbox-inner {
+      border: 1px solid $checkbox-border-color;
+      background-color: $checkbox-color;
+      width: $checkbox-inner-side-length;
+      height: $checkbox-inner-side-length;
+      border-radius: 4px;
+      display: block;
+      outline: none;
+
+      &:hover:not(:active) {
+        border: 1px solid $checkbox-border-color;
+        background-color: $checkbox-hover-color;
+      }
+
+      &:active {
+        background-color: $checkbox-border-color;
+        border: 1px solid transparent;
+      }
+    }
+
+    [type=checkbox] {
+      @extend .visuallyhidden;
+
+      &:checked + .wix-checkbox-inner {
+        @extend .wix-style-svg-font-icons;
+        @extend .wix-style-svg-font-icons-check;
+
+        font-size: 6px;
+        text-align: center;
+        display: block;
+        line-height: $checkbox-inner-side-length;
+        vertical-align: middle;
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+      }
+
+      &:not(.white):checked:not(:disabled) + .wix-checkbox-inner {
+        color: $checkbox-color-white;
+        //scss-lint:disable NestingDepth
+        &:not(:active) {
+          background-color: $checkbox-emphasis-color;
+        }
+        //scss-lint:enable NestingDepth
+      }
+
+      &.white:checked:not(:disabled) + .wix-checkbox-inner {
+        color: $checkbox-emphasis-color;
+      }
+
+      &.white + .wix-checkbox-inner {
+        border: 1px solid $checkbox-no-background-border;
+        background-color: $checkbox-color-white;
+        //scss-lint:disable NestingDepth
+        &:active {
+          background-color: $checkbox-no-background-color;
+        }
+
+        &:hover:not(:active) {
+          border: 1px solid $checkbox-no-background-border;
+          background-color: $checkbox-no-background-color;
+        }
+        //scss-lint:enable NestingDepth
+      }
+
+      &:not(:disabled) + .wix-checkbox-inner {
+        cursor: pointer;
+      }
+
+      &:disabled + .wix-checkbox-inner {
+        pointer-events: none;
+        color: $checkbox-disabled-color;
+        border: 1px solid $checkbox-disabled-border-color;
+        background-color: $checkbox-disabled-background-color;
+      }
+    }
+  }
+}
+
+@include wix-checkbox();

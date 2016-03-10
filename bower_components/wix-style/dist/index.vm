@@ -1,0 +1,147 @@
+<!doctype html>
+<!-- #if( false )
+  Prerequisites from server model:
+  --------------------------------
+  ${locale}, ${debug}, ${secured}, ${experiments},
+  ${newRelicEndUserHeader}, ${newRelicEndUserFooter}
+  ${clientTopology.styleSslStaticsUrl},
+  ${clientTopology.styleStaticsUrl},
+  ${clientTopology.staticBaseUrl},
+  ${clientTopology.sslStaticBaseUrl}
+
+  More details at: http://kb.wixpress.com/display/dashboard/How+to+integrate+server+with+index.vm
+#end -->
+<!--
+  #if( false )
+  DO NOT TOUCH!!
+  --------------
+  #end
+  #set( $languages = ["de","en","es","fr","it","ja","ko","pl","pt","ru","tr"] )
+  #if( !$languages.contains($locale) )
+    #set( $locale = "en" )
+  #end
+  #if( $secured )
+    #set( $staticsUrl = $clientTopology.styleSslStaticsUrl )
+    #set( $staticBaseUrl = $clientTopology.sslStaticBaseUrl )
+  #else
+    #set( $staticsUrl = $clientTopology.styleStaticsUrl )
+    #set( $staticBaseUrl = $clientTopology.staticBaseUrl )
+  #end
+-->
+<html ng-app="wixStyleApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>wixStyle</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="${staticBaseUrl}services/third-party/fonts/Helvetica/fontFace.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <!-- #if( !${debug} ) -->
+<link rel="stylesheet" href="${staticsUrl}styles/main.css">
+<!-- #else -#if( false )#end->
+<link rel="stylesheet" href="${staticsUrl}_debug_styles/main.css"><!-- #end -->
+      <!-- #if( !${debug} ) -->
+<link rel="stylesheet" href="${staticsUrl}styles/styleguide-modifications.css">
+<!-- #else -#if( false )#end->
+<link rel="stylesheet" href="${staticsUrl}_debug_styles/styleguide-modifications.css"><!-- #end -->
+    <!--<link rel="stylesheet" href="styles/sanity-for-legacy-folder.css">-->
+
+    <!-- #if( false ) -->
+    <script>
+      /* jshint ignore:start */
+      ENABLE_MOCKS = ${enableMocks};
+    </script>
+    <!-- #end -->
+
+    ${newRelicEndUserHeader}
+     <style>
+         .doc-page {
+             padding: 0 30px;
+         }
+
+         .doc-page h3 a {
+             font-size: 14px;
+         }
+     </style>
+  </head>
+  <body>
+    <!-- Add your site or application content here -->
+    <ng-view></ng-view>
+
+    <!-- <script src="${staticsUrl}bower_components/jquery/jquery.js"></script> -->
+    <script src="${staticBaseUrl}services/third-party/angularjs/1.4.9/angular#if(!${debug}).min#{end}.js"></script>
+    <script src="${staticBaseUrl}services/third-party/angularjs/1.4.9/angular-route#if(!${debug}).min#{end}.js"></script>
+    <script src="${staticBaseUrl}services/third-party/angular-translate/1.1.1/angular-translate#if(!${debug}).min#{end}.js"></script>
+    <script src="${staticBaseUrl}services/third-party/angularjs/1.4.9/i18n/angular-locale_${locale}.js"></script>
+    <script src="${staticsUrl}bower_components/angular-animate/angular-animate.js"></script>
+    <script src="${staticsUrl}bower_components/angular-aria/angular-aria.js"></script>
+    <script src="${staticBaseUrl}services/third-party/angular-material/1.0.5/angular-material#if(!${debug}).min#{end}.js"></script>
+    <script src="${staticsUrl}scripts/locale/messages_${locale}.js"></script>
+    <!-- #if( !${debug} ) -->
+<script src="${staticsUrl}scripts/demo.js"></script>
+<!-- #else -#if( false )#end->
+<script src="${staticsUrl}_debug_scripts/app.js"></script>
+<script src="${staticsUrl}_debug_scripts/controllers/main.js"></script><!-- #end -->
+    <!-- #if( !${debug} ) -->
+<script src="${staticsUrl}scripts/wix-style-test-kit.js"></script>
+<!-- #else -#if( false )#end->
+<script src="${staticsUrl}test/lib/wix-style-test-kit.js"></script><!-- #end -->
+    <!-- #if( !${debug} ) -->
+<script src="${staticsUrl}scripts/scripts.js"></script>
+<!-- #else -#if( false )#end->
+<script src="${staticsUrl}views/directives/wix-dropdown.html.js"></script>
+<script src="${staticsUrl}views/directives/wix-tabs.html.js"></script>
+<script src="${staticsUrl}views/directives/wix-wizard.html.js"></script>
+<script src="${staticsUrl}views/directives/wix-search.html.js"></script>
+<script src="${staticsUrl}views/directives/wix-list.html.js"></script>
+<script src="${staticsUrl}views/components/modals/wix-message-window.html.js"></script>
+<script src="${staticsUrl}views/components/modals/wix-premium-window.html.js"></script>
+<script src="${staticsUrl}views/components/modals/wix-modal-custom-example.html.js"></script>
+<script src="${staticsUrl}_debug_scripts/controllers/matrialTest.js"></script>
+<script src="${staticsUrl}_debug_scripts/wix-style.js"></script>
+<script src="${staticsUrl}_debug_scripts/services/wix-mdDialog-builder.js"></script>
+<script src="${staticsUrl}_debug_scripts/services/wix-mdToast-builder.js"></script>
+<script src="${staticsUrl}_debug_scripts/controllers/mdMessage-window.ctrl.js"></script>
+<script src="${staticsUrl}_debug_scripts/controllers/wix-mdToast.ctrl.js"></script>
+<script src="${staticsUrl}_debug_scripts/controllers/message-window.ctrl.js"></script>
+<script src="${staticsUrl}_debug_scripts/controllers/wix-modal-custom-example.ctrl.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-dropdown.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-toggle.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-input.js"></script>
+<script src="${staticsUrl}_debug_scripts/services/wix-modal.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-checkbox.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-notification.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-wizard.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-radio.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-tooltip.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-tabs.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-search.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/wix-list.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/angular-material-theme/md-datepicker.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/angular-material-theme/md-autocomplete.js"></script><!-- #end -->
+    <!-- #if( !${debug} ) -->
+<script src="${staticsUrl}scripts/cs5-helpers-only.js"></script>
+<!-- #else -#if( false )#end->
+<script src="${staticsUrl}_debug_scripts/directives/sc5-helpers-only/execute-script.js"></script>
+<script src="${staticsUrl}_debug_scripts/directives/sc5-helpers-only/parameter-provider.js"></script><!-- #end -->
+
+    <!-- #if( false ) -->
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <!-- #if( !${debug} ) -->
+<script src="scripts/mocks.js"></script>
+<!-- #else -#if( false )#end->
+<script src="mock/server-api.js"></script><!-- #end -->
+    <script>
+      if (ENABLE_MOCKS) {
+        angular.module('wixStyle').requires.push('wixStyleMocks');
+      }
+    </script>
+    <!-- #end -->
+
+    ${newRelicEndUserFooter}
+
+  </body>
+</html>
