@@ -107,7 +107,8 @@ class GameApp {
   endTurn() {
     this.game.endTurn();
     if (this.game.isGameOver()) {
-      alert('Game Over!');
+      let endMsg = `${this.game.getWinners()} won!`;
+      alert(`'Game Over! ${endMsg}`);
     }
   }
 

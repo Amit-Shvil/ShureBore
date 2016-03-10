@@ -18,7 +18,7 @@ class Game {
     this.players[1] = new Player('Player 2', '#0000ff');
     this.activePlayer = 0;
     this.isOver = false;
-    this.board = new Board(3);
+    this.board = new Board(2);
     this.turn = {dot: undefined, lines: undefined};
   }
 
@@ -28,6 +28,20 @@ class Game {
 
   getBoard(): Board {
     return this.board;
+  }
+
+  getWinners() {
+    let max = -1;
+    this.players.forEach(player => {
+      if(player.getScore() > max) {
+        max = player.getScore();
+      }
+    });
+    return this.players.filter(player => {
+      return player.getScore() === max;
+    }).map(player => {
+      return player.name;
+    });
   }
 
   playTurn(dot: Dot) {
