@@ -32,4 +32,16 @@ module.exports = function (grunt) {
 
   //Follow this URL for instructions on how to override built-in definitions:
   //https://github.com/wix/wix-gruntfile/blob/master/README.md
+
+  grunt.loadNpmTasks('grunt-gh-pages');
+  grunt.config('gh-pages', {
+    options: {
+      base: 'dist'
+    },
+    src: ['**']
+  });
+  grunt.registerTask('deploy', [
+    'build',
+    'gh-pages'
+  ]);
 };

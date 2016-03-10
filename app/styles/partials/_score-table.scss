@@ -1,0 +1,19 @@
+.score-table {
+  display: flex;
+  flex-direction: row;
+  font-family: $wix-font-family-helvetica-45;
+  font-size: $wix-font-size-h3;
+  color: $wix-color-dark30;
+}
+
+.player-entry {
+  margin-left: 20px;
+}
+
+.player-score {
+  text-align: center;
+}
+
+.score-table-title {
+  @include wix-typography-h2();
+}

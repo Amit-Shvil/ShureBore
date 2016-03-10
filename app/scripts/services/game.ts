@@ -18,7 +18,7 @@ class Game {
     this.players[1] = new Player('Player 2', '#0000ff');
     this.activePlayer = 0;
     this.isOver = false;
-    this.board = new Board(2);
+    this.board = new Board(5);
     this.turn = {dot: undefined, lines: undefined};
   }
 

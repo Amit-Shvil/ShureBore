@@ -3,6 +3,7 @@
 // ======================================================================
 $enable-wix-style-css: true;
 @import '../bower_components/wix-style/dist/styles/style';
+@import '../bower_components/wix-style/dist/styles/main';
 
 // ======================================================================
 // =| SVG Font |=========================================================
@@ -12,43 +13,39 @@ $enable-wix-style-css: true;
 // ======================================================================
 
 @import 'documents-svg-font-icons';
+@import 'partials/score-table';
 
 $bg-color: $wix-gray-lightest;
+
+.game-app-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .container {
   margin: auto;
   width: 300px;
 }
 
-.hero-unit {
-  position: absolute;
-  width: 360px;
-  font-family: $wix-helvetica-55;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: $bg-color;
-  border-radius: 6px;
-  padding: 60px;
+.player-turn {
+  @include wix-typography-h1();
+}
 
-  h1 {
-    font-family: $wix-helvetica-75;
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
+.header {
+  display: flex;
+  margin: 30px 0;
+}
 
-  .logo-on-header {
-    font-size: 49px;
+.end-turn-btn {
+  margin-left: 40px;
+}
+
+
+.wix-style-link {
+  &:before {
     position: relative;
-    top: -8px;
-  }
-
-  .wix-style-link {
-    &:before {
-      position: relative;
-      left: -8px;
-    }
+    left: -8px;
   }
 }
 

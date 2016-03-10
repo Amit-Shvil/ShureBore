@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="robots" content="noindex, nofollow">
     <meta name="referrer" content="origin">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link type="image/png" href="//www.wix.com/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="${staticBaseUrl}services/third-party/fonts/Helvetica/fontFace.css">
     <!-- process-tags prefix('${staticsUrl}') -->
@@ -34,13 +35,19 @@
   <body>
 
     <!-- Add your site or application content here -->
-    <game-app></game-app>
+    <game-app class="game-app-component"></game-app>
 
 
     <!-- process-tags prefix('${staticsUrl}') -->
+
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/wix-style/dist/scripts/locale/messages_${locale}.js"></script>
+    <script src="bower_components/wix-style/dist/scripts/scripts.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- build:js scripts/modules.js -->
     <script src="bower_components/es6-shim/es6-shim.js"></script>
     <script src="bower_components/uri.js/src/URI.js"></script>

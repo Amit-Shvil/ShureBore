@@ -125,9 +125,11 @@ angular
   .module('documentsAppInternal')
   .component('gameApp', {
     template: `
-<canvas id="canvas" width="800" height="400" />
-<div>{{$ctrl.game.getActivePlayer().name}}'s turn</div>
-<button ng-disabled="!$ctrl.canEndTurn()" ng-click="$ctrl.endTurn()">End Turn</button>
+<header class="header">
+  <div class="player-turn">{{$ctrl.game.getActivePlayer().name}}'s turn</div>
+  <button type="button" class="wix-button end-turn-btn" ng-disabled="!$ctrl.canEndTurn()" ng-click="$ctrl.endTurn()">End Turn</button>
+</header>
+<canvas id="canvas" width="300" height="300" />
 <score-table players="$ctrl.game.players"></score-table>
 `,
     controller: GameApp,

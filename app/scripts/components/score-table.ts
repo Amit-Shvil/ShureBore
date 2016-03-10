@@ -14,6 +14,7 @@ angular
   .component('scoreTable', {
     template: `
 <section class="score-table">
+  <div class="score-table-title">Score Table:</div>
   <div class="player-entry" ng-repeat="player in $ctrl.players">
     <div class="player-name">{{player.name}}</div>
     <div class="player-score">{{player.getScore()}}</div>
