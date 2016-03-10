@@ -32,7 +32,7 @@ class Board {
       return false;
     }
     if (line.isVertical()) {
-      return this.boardSize - line.startDot.getCol() === line.length + 1;
+      return this.boardSize - line.startDot.getCol() === line.length;
     }
     if (line.isHorizontal()) {
       return this.model[line.startDot.getRow()].length === line.length;

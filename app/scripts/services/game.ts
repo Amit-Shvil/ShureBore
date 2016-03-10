@@ -14,8 +14,8 @@ class Game {
 
   constructor() {
     this.players = new Array<Player>(2);
-    this.players[0] = new Player('Player 1');
-    this.players[1] = new Player('Player 2');
+    this.players[0] = new Player('Player 1', '#ff0000');
+    this.players[1] = new Player('Player 2', '#0000ff');
     this.activePlayer = 0;
     this.isOver = false;
     this.board = new Board(3);
@@ -66,7 +66,12 @@ class Game {
       canDraw = false
     }
     return canDraw;
+  }
 
+  drawLine(line: Line) {
+    if(this.canDrawLine(line)) {
+      this.players[this.activePlayer].lines.push(line);
+    }
   }
 }
 
