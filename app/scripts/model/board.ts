@@ -3,7 +3,7 @@
 class Board {
   public model: Array<Array<Dot>>;
 
-  constructor(boardSize) {
+  constructor(private boardSize) {
     this.initBoard(boardSize);
   }
 
@@ -25,5 +25,17 @@ class Board {
       }
     }
     return isFull;
+  }
+
+  isLegalLine(line: Line) {
+    if (line.length < 2) {
+      return false;
+    }
+    if (line.isVertical()) {
+      return this.boardSize - line.startDot.getCol() === line.length + 1;
+    }
+    if (line.isHorizontal()) {
+      return this.model[line.startDot.getRow()].length === line.length;
+    }
   }
 }

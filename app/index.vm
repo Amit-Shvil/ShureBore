@@ -53,6 +53,7 @@
     <script src="scripts/components/game-app.component.js"></script>
     <script src="scripts/model/board.js"></script>
     <script src="scripts/model/player.js"></script>
+    <script src="scripts/model/line.js"></script>
     <script src="scripts/services/game.js"></script>
     <!-- endbuild --><!-- scripts -->
     <!-- build:locale({.tmp,app}) scripts/locale/messages_${locale}.js -->

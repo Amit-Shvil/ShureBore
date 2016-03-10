@@ -31,7 +31,7 @@ class Game {
   }
 
   playTurn(dot: Dot) {
-    if(this.canPlaceDot(dot)) {
+    if (this.canPlaceDot(dot)) {
       this.turn.dot = dot;
       dot.fill();
     }
@@ -54,6 +54,20 @@ class Game {
     return this.players[this.activePlayer];
   }
 
+  canDrawLine(line: Line): boolean {
+    let canDraw: boolean = true;
+    if (this.board.isLegalLine(line)) {
+      for (var p = 0; p < this.players.length; p++) {
+        if (this.players[p].hasLine(line)) {
+          canDraw = false;
+        }
+      }
+    } else {
+      canDraw = false
+    }
+    return canDraw;
+
+  }
 }
 
 angular
